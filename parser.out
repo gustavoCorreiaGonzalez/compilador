@@ -1,0 +1,3138 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Programa
+Rule 1     Programa -> Declaracao_Variavel_Global Declaracao_Funcao Funcao_Principal
+Rule 2     Programa -> Declaracao_Funcao Funcao_Principal
+Rule 3     Programa -> Funcao_Principal
+Rule 4     Declaracao_Variavel_Global -> Declaracao_Variavel_Global Declaracao_Variavel
+Rule 5     Declaracao_Variavel_Global -> Declaracao_Variavel
+Rule 6     Declaracao_Funcao -> Declaracao_Funcao Funcao
+Rule 7     Declaracao_Funcao -> Funcao
+Rule 8     Funcao_Principal -> VAZIO PRINCIPAL ABREPARENTES FECHAPARENTES Conjunto_Declaracoes FIM
+Rule 9     Funcao_Principal -> empty
+Rule 10    Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM
+Rule 11    Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM
+Rule 12    Declaracao_Variavel -> Tipo DOISPONTOS Variaveis
+Rule 13    Variaveis -> Variaveis VIRGULA IDENTIFICADOR
+Rule 14    Variaveis -> IDENTIFICADOR
+Rule 15    Conjunto_Parametros -> Tipo DOISPONTOS IDENTIFICADOR VIRGULA Conjunto_Parametros
+Rule 16    Conjunto_Parametros -> Tipo DOISPONTOS IDENTIFICADOR
+Rule 17    Conjunto_Parametros -> empty
+Rule 18    Tipo -> INTEIRO
+Rule 19    Tipo -> FLUTUANTE
+Rule 20    Tipo -> VAZIO
+Rule 21    Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao
+Rule 22    Conjunto_Declaracoes -> Declaracao
+Rule 23    Declaracao -> Declaracao_Se
+Rule 24    Declaracao -> Declaracao_Repita
+Rule 25    Declaracao -> Declaracao_Atribuicao
+Rule 26    Declaracao -> Declaracao_Leia
+Rule 27    Declaracao -> Declaracao_Escreva
+Rule 28    Declaracao -> Declaracao_Variavel
+Rule 29    Declaracao -> Declaracao_Retorno
+Rule 30    Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+Rule 31    Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+Rule 32    Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+Rule 33    Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
+Rule 34    Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+Rule 35    Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+Rule 36    Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+Rule 37    Conjunto_Expressao -> Expressao_ID
+Rule 38    Conjunto_Expressao -> Expressao_Aritmetica
+Rule 39    Conjunto_Expressao -> Expressao_Comparacional
+Rule 40    Conjunto_Expressao -> Expressao_Parenteses
+Rule 41    Conjunto_Expressao -> Expressao_Numero
+Rule 42    Conjunto_Expressao -> Chama_Funcao
+Rule 43    Parametros -> Parametros VIRGULA Conjunto_Expressao
+Rule 44    Parametros -> Conjunto_Expressao
+Rule 45    Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+Rule 46    Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES
+Rule 47    Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR
+Rule 48    Expressao_ID -> IDENTIFICADOR
+Rule 49    Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao
+Rule 50    Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+Rule 51    Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+Rule 52    Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao
+Rule 53    Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao
+Rule 54    Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao
+Rule 55    Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+Rule 56    Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+Rule 57    Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao
+Rule 58    Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES
+Rule 59    Expressao_Numero -> Numero
+Rule 60    Numero -> N_INTEIRO
+Rule 61    Numero -> N_FLUTUANTE
+Rule 62    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ABREPARENTES         : 8 10 11 34 35 36 45 46 58
+ATE                  : 32
+ATRIBUICAO           : 33
+DIVISAO              : 52
+DOISPONTOS           : 12 15 16
+ENTAO                : 30 31
+ESCREVA              : 35
+FECHAPARENTES        : 8 10 11 34 35 36 45 46 58
+FIM                  : 8 10 11 30 31
+FLUTUANTE            : 19
+IDENTIFICADOR        : 10 11 13 14 15 16 33 34 45 46 47 48
+IGUALDADE            : 57
+INTEIRO              : 18
+LEIA                 : 34
+MAIOR                : 53
+MAIORIGUAL           : 55
+MENOR                : 54
+MENORIGUAL           : 56
+MULTIPLICACAO        : 51
+N_FLUTUANTE          : 61
+N_INTEIRO            : 60
+PRINCIPAL            : 8
+REPITA               : 32
+RETORNA              : 36
+SE                   : 30 31
+SENAO                : 31
+SOMA                 : 49
+SUBTRACAO            : 50
+VAZIO                : 8 20
+VIRGULA              : 13 15 43 47
+error                : 
+
+Nonterminals, with rules where they appear
+
+Chama_Funcao         : 42
+Conjunto_Declaracoes : 8 10 21 30 31 31 32
+Conjunto_Expressao   : 30 31 32 33 35 36 43 44 49 49 50 50 51 51 52 52 53 53 54 54 55 55 56 56 57 57 58
+Conjunto_Parametros  : 10 11 15
+Declaracao           : 21 22
+Declaracao_Atribuicao : 25
+Declaracao_Escreva   : 27
+Declaracao_Funcao    : 1 2 6
+Declaracao_Leia      : 26
+Declaracao_Repita    : 24
+Declaracao_Retorno   : 29
+Declaracao_Se        : 23
+Declaracao_Variavel  : 4 5 28
+Declaracao_Variavel_Global : 1 4
+Expressao_Aritmetica : 38
+Expressao_Comparacional : 39
+Expressao_ID         : 37 47
+Expressao_Numero     : 41
+Expressao_Parenteses : 40
+Funcao               : 6 7
+Funcao_Principal     : 1 2 3
+Numero               : 59
+Parametros           : 43 45
+Programa             : 0
+Tipo                 : 10 11 12 15 16
+Variaveis            : 12 13
+empty                : 9 17
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Programa
+    (1) Programa -> . Declaracao_Variavel_Global Declaracao_Funcao Funcao_Principal
+    (2) Programa -> . Declaracao_Funcao Funcao_Principal
+    (3) Programa -> . Funcao_Principal
+    (4) Declaracao_Variavel_Global -> . Declaracao_Variavel_Global Declaracao_Variavel
+    (5) Declaracao_Variavel_Global -> . Declaracao_Variavel
+    (6) Declaracao_Funcao -> . Declaracao_Funcao Funcao
+    (7) Declaracao_Funcao -> . Funcao
+    (8) Funcao_Principal -> . VAZIO PRINCIPAL ABREPARENTES FECHAPARENTES Conjunto_Declaracoes FIM
+    (9) Funcao_Principal -> . empty
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (10) Funcao -> . Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM
+    (11) Funcao -> . Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM
+    (62) empty -> .
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    VAZIO           shift and go to state 8
+    $end            reduce using rule 62 (empty -> .)
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+
+    Funcao_Principal               shift and go to state 1
+    Declaracao_Funcao              shift and go to state 2
+    Declaracao_Variavel_Global     shift and go to state 9
+    Tipo                           shift and go to state 7
+    Programa                       shift and go to state 4
+    Declaracao_Variavel            shift and go to state 5
+    Funcao                         shift and go to state 6
+    empty                          shift and go to state 10
+
+state 1
+
+    (3) Programa -> Funcao_Principal .
+
+    $end            reduce using rule 3 (Programa -> Funcao_Principal .)
+
+
+state 2
+
+    (2) Programa -> Declaracao_Funcao . Funcao_Principal
+    (6) Declaracao_Funcao -> Declaracao_Funcao . Funcao
+    (8) Funcao_Principal -> . VAZIO PRINCIPAL ABREPARENTES FECHAPARENTES Conjunto_Declaracoes FIM
+    (9) Funcao_Principal -> . empty
+    (10) Funcao -> . Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM
+    (11) Funcao -> . Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM
+    (62) empty -> .
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    VAZIO           shift and go to state 8
+    $end            reduce using rule 62 (empty -> .)
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+
+    Funcao_Principal               shift and go to state 12
+    Tipo                           shift and go to state 13
+    Funcao                         shift and go to state 14
+    empty                          shift and go to state 10
+
+state 3
+
+    (18) Tipo -> INTEIRO .
+
+    DOISPONTOS      reduce using rule 18 (Tipo -> INTEIRO .)
+    IDENTIFICADOR   reduce using rule 18 (Tipo -> INTEIRO .)
+
+
+state 4
+
+    (0) S' -> Programa .
+
+
+
+state 5
+
+    (5) Declaracao_Variavel_Global -> Declaracao_Variavel .
+
+    INTEIRO         reduce using rule 5 (Declaracao_Variavel_Global -> Declaracao_Variavel .)
+    FLUTUANTE       reduce using rule 5 (Declaracao_Variavel_Global -> Declaracao_Variavel .)
+    VAZIO           reduce using rule 5 (Declaracao_Variavel_Global -> Declaracao_Variavel .)
+
+
+state 6
+
+    (7) Declaracao_Funcao -> Funcao .
+
+    VAZIO           reduce using rule 7 (Declaracao_Funcao -> Funcao .)
+    INTEIRO         reduce using rule 7 (Declaracao_Funcao -> Funcao .)
+    FLUTUANTE       reduce using rule 7 (Declaracao_Funcao -> Funcao .)
+    $end            reduce using rule 7 (Declaracao_Funcao -> Funcao .)
+
+
+state 7
+
+    (12) Declaracao_Variavel -> Tipo . DOISPONTOS Variaveis
+    (10) Funcao -> Tipo . IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM
+    (11) Funcao -> Tipo . IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM
+
+    DOISPONTOS      shift and go to state 15
+    IDENTIFICADOR   shift and go to state 16
+
+
+state 8
+
+    (8) Funcao_Principal -> VAZIO . PRINCIPAL ABREPARENTES FECHAPARENTES Conjunto_Declaracoes FIM
+    (20) Tipo -> VAZIO .
+
+    PRINCIPAL       shift and go to state 17
+    DOISPONTOS      reduce using rule 20 (Tipo -> VAZIO .)
+    IDENTIFICADOR   reduce using rule 20 (Tipo -> VAZIO .)
+
+
+state 9
+
+    (1) Programa -> Declaracao_Variavel_Global . Declaracao_Funcao Funcao_Principal
+    (4) Declaracao_Variavel_Global -> Declaracao_Variavel_Global . Declaracao_Variavel
+    (6) Declaracao_Funcao -> . Declaracao_Funcao Funcao
+    (7) Declaracao_Funcao -> . Funcao
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (10) Funcao -> . Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM
+    (11) Funcao -> . Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+
+    Declaracao_Funcao              shift and go to state 20
+    Tipo                           shift and go to state 7
+    Declaracao_Variavel            shift and go to state 18
+    Funcao                         shift and go to state 6
+
+state 10
+
+    (9) Funcao_Principal -> empty .
+
+    $end            reduce using rule 9 (Funcao_Principal -> empty .)
+
+
+state 11
+
+    (19) Tipo -> FLUTUANTE .
+
+    DOISPONTOS      reduce using rule 19 (Tipo -> FLUTUANTE .)
+    IDENTIFICADOR   reduce using rule 19 (Tipo -> FLUTUANTE .)
+
+
+state 12
+
+    (2) Programa -> Declaracao_Funcao Funcao_Principal .
+
+    $end            reduce using rule 2 (Programa -> Declaracao_Funcao Funcao_Principal .)
+
+
+state 13
+
+    (10) Funcao -> Tipo . IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM
+    (11) Funcao -> Tipo . IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM
+
+    IDENTIFICADOR   shift and go to state 16
+
+
+state 14
+
+    (6) Declaracao_Funcao -> Declaracao_Funcao Funcao .
+
+    VAZIO           reduce using rule 6 (Declaracao_Funcao -> Declaracao_Funcao Funcao .)
+    INTEIRO         reduce using rule 6 (Declaracao_Funcao -> Declaracao_Funcao Funcao .)
+    FLUTUANTE       reduce using rule 6 (Declaracao_Funcao -> Declaracao_Funcao Funcao .)
+    $end            reduce using rule 6 (Declaracao_Funcao -> Declaracao_Funcao Funcao .)
+
+
+state 15
+
+    (12) Declaracao_Variavel -> Tipo DOISPONTOS . Variaveis
+    (13) Variaveis -> . Variaveis VIRGULA IDENTIFICADOR
+    (14) Variaveis -> . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 22
+
+    Variaveis                      shift and go to state 21
+
+state 16
+
+    (10) Funcao -> Tipo IDENTIFICADOR . ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM
+    (11) Funcao -> Tipo IDENTIFICADOR . ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM
+
+    ABREPARENTES    shift and go to state 23
+
+
+state 17
+
+    (8) Funcao_Principal -> VAZIO PRINCIPAL . ABREPARENTES FECHAPARENTES Conjunto_Declaracoes FIM
+
+    ABREPARENTES    shift and go to state 24
+
+
+state 18
+
+    (4) Declaracao_Variavel_Global -> Declaracao_Variavel_Global Declaracao_Variavel .
+
+    INTEIRO         reduce using rule 4 (Declaracao_Variavel_Global -> Declaracao_Variavel_Global Declaracao_Variavel .)
+    FLUTUANTE       reduce using rule 4 (Declaracao_Variavel_Global -> Declaracao_Variavel_Global Declaracao_Variavel .)
+    VAZIO           reduce using rule 4 (Declaracao_Variavel_Global -> Declaracao_Variavel_Global Declaracao_Variavel .)
+
+
+state 19
+
+    (20) Tipo -> VAZIO .
+
+    DOISPONTOS      reduce using rule 20 (Tipo -> VAZIO .)
+    IDENTIFICADOR   reduce using rule 20 (Tipo -> VAZIO .)
+
+
+state 20
+
+    (1) Programa -> Declaracao_Variavel_Global Declaracao_Funcao . Funcao_Principal
+    (6) Declaracao_Funcao -> Declaracao_Funcao . Funcao
+    (8) Funcao_Principal -> . VAZIO PRINCIPAL ABREPARENTES FECHAPARENTES Conjunto_Declaracoes FIM
+    (9) Funcao_Principal -> . empty
+    (10) Funcao -> . Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM
+    (11) Funcao -> . Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM
+    (62) empty -> .
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    VAZIO           shift and go to state 8
+    $end            reduce using rule 62 (empty -> .)
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+
+    Funcao_Principal               shift and go to state 25
+    Tipo                           shift and go to state 13
+    Funcao                         shift and go to state 14
+    empty                          shift and go to state 10
+
+state 21
+
+    (12) Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .
+    (13) Variaveis -> Variaveis . VIRGULA IDENTIFICADOR
+
+    FIM             reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    SENAO           reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    SE              reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    REPITA          reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    IDENTIFICADOR   reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    LEIA            reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    ESCREVA         reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    RETORNA         reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    INTEIRO         reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    FLUTUANTE       reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    VAZIO           reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    ATE             reduce using rule 12 (Declaracao_Variavel -> Tipo DOISPONTOS Variaveis .)
+    VIRGULA         shift and go to state 26
+
+
+state 22
+
+    (14) Variaveis -> IDENTIFICADOR .
+
+    VIRGULA         reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    INTEIRO         reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    FLUTUANTE       reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    VAZIO           reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    FIM             reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    SE              reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    REPITA          reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    IDENTIFICADOR   reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    LEIA            reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    ESCREVA         reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    RETORNA         reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    ATE             reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+    SENAO           reduce using rule 14 (Variaveis -> IDENTIFICADOR .)
+
+
+state 23
+
+    (10) Funcao -> Tipo IDENTIFICADOR ABREPARENTES . Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM
+    (11) Funcao -> Tipo IDENTIFICADOR ABREPARENTES . Conjunto_Parametros FECHAPARENTES FIM
+    (15) Conjunto_Parametros -> . Tipo DOISPONTOS IDENTIFICADOR VIRGULA Conjunto_Parametros
+    (16) Conjunto_Parametros -> . Tipo DOISPONTOS IDENTIFICADOR
+    (17) Conjunto_Parametros -> . empty
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+    (62) empty -> .
+
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+    FECHAPARENTES   reduce using rule 62 (empty -> .)
+
+    Conjunto_Parametros            shift and go to state 27
+    Tipo                           shift and go to state 28
+    empty                          shift and go to state 29
+
+state 24
+
+    (8) Funcao_Principal -> VAZIO PRINCIPAL ABREPARENTES . FECHAPARENTES Conjunto_Declaracoes FIM
+
+    FECHAPARENTES   shift and go to state 30
+
+
+state 25
+
+    (1) Programa -> Declaracao_Variavel_Global Declaracao_Funcao Funcao_Principal .
+
+    $end            reduce using rule 1 (Programa -> Declaracao_Variavel_Global Declaracao_Funcao Funcao_Principal .)
+
+
+state 26
+
+    (13) Variaveis -> Variaveis VIRGULA . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 31
+
+
+state 27
+
+    (10) Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros . FECHAPARENTES Conjunto_Declaracoes FIM
+    (11) Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros . FECHAPARENTES FIM
+
+    FECHAPARENTES   shift and go to state 32
+
+
+state 28
+
+    (15) Conjunto_Parametros -> Tipo . DOISPONTOS IDENTIFICADOR VIRGULA Conjunto_Parametros
+    (16) Conjunto_Parametros -> Tipo . DOISPONTOS IDENTIFICADOR
+
+    DOISPONTOS      shift and go to state 33
+
+
+state 29
+
+    (17) Conjunto_Parametros -> empty .
+
+    FECHAPARENTES   reduce using rule 17 (Conjunto_Parametros -> empty .)
+
+
+state 30
+
+    (8) Funcao_Principal -> VAZIO PRINCIPAL ABREPARENTES FECHAPARENTES . Conjunto_Declaracoes FIM
+    (21) Conjunto_Declaracoes -> . Conjunto_Declaracoes Declaracao
+    (22) Conjunto_Declaracoes -> . Declaracao
+    (23) Declaracao -> . Declaracao_Se
+    (24) Declaracao -> . Declaracao_Repita
+    (25) Declaracao -> . Declaracao_Atribuicao
+    (26) Declaracao -> . Declaracao_Leia
+    (27) Declaracao -> . Declaracao_Escreva
+    (28) Declaracao -> . Declaracao_Variavel
+    (29) Declaracao -> . Declaracao_Retorno
+    (30) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (32) Declaracao_Repita -> . REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+    (33) Declaracao_Atribuicao -> . IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
+    (34) Declaracao_Leia -> . LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+    (35) Declaracao_Escreva -> . ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (36) Declaracao_Retorno -> . RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    SE              shift and go to state 44
+    REPITA          shift and go to state 47
+    IDENTIFICADOR   shift and go to state 42
+    LEIA            shift and go to state 37
+    ESCREVA         shift and go to state 38
+    RETORNA         shift and go to state 43
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+
+    Declaracao                     shift and go to state 39
+    Conjunto_Declaracoes           shift and go to state 40
+    Tipo                           shift and go to state 34
+    Declaracao_Leia                shift and go to state 41
+    Declaracao_Retorno             shift and go to state 35
+    Declaracao_Variavel            shift and go to state 36
+    Declaracao_Se                  shift and go to state 45
+    Declaracao_Escreva             shift and go to state 46
+    Declaracao_Repita              shift and go to state 48
+    Declaracao_Atribuicao          shift and go to state 49
+
+state 31
+
+    (13) Variaveis -> Variaveis VIRGULA IDENTIFICADOR .
+
+    VIRGULA         reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    INTEIRO         reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    FLUTUANTE       reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    VAZIO           reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    FIM             reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    SE              reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    REPITA          reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    IDENTIFICADOR   reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    LEIA            reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    ESCREVA         reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    RETORNA         reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    ATE             reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+    SENAO           reduce using rule 13 (Variaveis -> Variaveis VIRGULA IDENTIFICADOR .)
+
+
+state 32
+
+    (10) Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES . Conjunto_Declaracoes FIM
+    (11) Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES . FIM
+    (21) Conjunto_Declaracoes -> . Conjunto_Declaracoes Declaracao
+    (22) Conjunto_Declaracoes -> . Declaracao
+    (23) Declaracao -> . Declaracao_Se
+    (24) Declaracao -> . Declaracao_Repita
+    (25) Declaracao -> . Declaracao_Atribuicao
+    (26) Declaracao -> . Declaracao_Leia
+    (27) Declaracao -> . Declaracao_Escreva
+    (28) Declaracao -> . Declaracao_Variavel
+    (29) Declaracao -> . Declaracao_Retorno
+    (30) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (32) Declaracao_Repita -> . REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+    (33) Declaracao_Atribuicao -> . IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
+    (34) Declaracao_Leia -> . LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+    (35) Declaracao_Escreva -> . ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (36) Declaracao_Retorno -> . RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    FIM             shift and go to state 50
+    SE              shift and go to state 44
+    REPITA          shift and go to state 47
+    IDENTIFICADOR   shift and go to state 42
+    LEIA            shift and go to state 37
+    ESCREVA         shift and go to state 38
+    RETORNA         shift and go to state 43
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+
+    Declaracao                     shift and go to state 39
+    Conjunto_Declaracoes           shift and go to state 51
+    Tipo                           shift and go to state 34
+    Declaracao_Leia                shift and go to state 41
+    Declaracao_Retorno             shift and go to state 35
+    Declaracao_Variavel            shift and go to state 36
+    Declaracao_Se                  shift and go to state 45
+    Declaracao_Escreva             shift and go to state 46
+    Declaracao_Repita              shift and go to state 48
+    Declaracao_Atribuicao          shift and go to state 49
+
+state 33
+
+    (15) Conjunto_Parametros -> Tipo DOISPONTOS . IDENTIFICADOR VIRGULA Conjunto_Parametros
+    (16) Conjunto_Parametros -> Tipo DOISPONTOS . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 52
+
+
+state 34
+
+    (12) Declaracao_Variavel -> Tipo . DOISPONTOS Variaveis
+
+    DOISPONTOS      shift and go to state 15
+
+
+state 35
+
+    (29) Declaracao -> Declaracao_Retorno .
+
+    FIM             reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+    SENAO           reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+    SE              reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+    REPITA          reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+    IDENTIFICADOR   reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+    LEIA            reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+    ESCREVA         reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+    RETORNA         reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+    INTEIRO         reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+    FLUTUANTE       reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+    VAZIO           reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+    ATE             reduce using rule 29 (Declaracao -> Declaracao_Retorno .)
+
+
+state 36
+
+    (28) Declaracao -> Declaracao_Variavel .
+
+    FIM             reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+    SENAO           reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+    SE              reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+    REPITA          reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+    IDENTIFICADOR   reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+    LEIA            reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+    ESCREVA         reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+    RETORNA         reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+    INTEIRO         reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+    FLUTUANTE       reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+    VAZIO           reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+    ATE             reduce using rule 28 (Declaracao -> Declaracao_Variavel .)
+
+
+state 37
+
+    (34) Declaracao_Leia -> LEIA . ABREPARENTES IDENTIFICADOR FECHAPARENTES
+
+    ABREPARENTES    shift and go to state 53
+
+
+state 38
+
+    (35) Declaracao_Escreva -> ESCREVA . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+
+    ABREPARENTES    shift and go to state 54
+
+
+state 39
+
+    (22) Conjunto_Declaracoes -> Declaracao .
+
+    FIM             reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+    SE              reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+    REPITA          reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+    IDENTIFICADOR   reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+    LEIA            reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+    ESCREVA         reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+    RETORNA         reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+    INTEIRO         reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+    FLUTUANTE       reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+    VAZIO           reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+    SENAO           reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+    ATE             reduce using rule 22 (Conjunto_Declaracoes -> Declaracao .)
+
+
+state 40
+
+    (8) Funcao_Principal -> VAZIO PRINCIPAL ABREPARENTES FECHAPARENTES Conjunto_Declaracoes . FIM
+    (21) Conjunto_Declaracoes -> Conjunto_Declaracoes . Declaracao
+    (23) Declaracao -> . Declaracao_Se
+    (24) Declaracao -> . Declaracao_Repita
+    (25) Declaracao -> . Declaracao_Atribuicao
+    (26) Declaracao -> . Declaracao_Leia
+    (27) Declaracao -> . Declaracao_Escreva
+    (28) Declaracao -> . Declaracao_Variavel
+    (29) Declaracao -> . Declaracao_Retorno
+    (30) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (32) Declaracao_Repita -> . REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+    (33) Declaracao_Atribuicao -> . IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
+    (34) Declaracao_Leia -> . LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+    (35) Declaracao_Escreva -> . ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (36) Declaracao_Retorno -> . RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    FIM             shift and go to state 55
+    SE              shift and go to state 44
+    REPITA          shift and go to state 47
+    IDENTIFICADOR   shift and go to state 42
+    LEIA            shift and go to state 37
+    ESCREVA         shift and go to state 38
+    RETORNA         shift and go to state 43
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+
+    Declaracao                     shift and go to state 56
+    Tipo                           shift and go to state 34
+    Declaracao_Leia                shift and go to state 41
+    Declaracao_Retorno             shift and go to state 35
+    Declaracao_Variavel            shift and go to state 36
+    Declaracao_Se                  shift and go to state 45
+    Declaracao_Escreva             shift and go to state 46
+    Declaracao_Repita              shift and go to state 48
+    Declaracao_Atribuicao          shift and go to state 49
+
+state 41
+
+    (26) Declaracao -> Declaracao_Leia .
+
+    FIM             reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+    SENAO           reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+    SE              reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+    REPITA          reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+    IDENTIFICADOR   reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+    LEIA            reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+    ESCREVA         reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+    RETORNA         reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+    INTEIRO         reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+    FLUTUANTE       reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+    VAZIO           reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+    ATE             reduce using rule 26 (Declaracao -> Declaracao_Leia .)
+
+
+state 42
+
+    (33) Declaracao_Atribuicao -> IDENTIFICADOR . ATRIBUICAO Conjunto_Expressao
+
+    ATRIBUICAO      shift and go to state 57
+
+
+state 43
+
+    (36) Declaracao_Retorno -> RETORNA . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+
+    ABREPARENTES    shift and go to state 58
+
+
+state 44
+
+    (30) Declaracao_Se -> SE . Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> SE . Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 61
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 45
+
+    (23) Declaracao -> Declaracao_Se .
+
+    FIM             reduce using rule 23 (Declaracao -> Declaracao_Se .)
+    SENAO           reduce using rule 23 (Declaracao -> Declaracao_Se .)
+    SE              reduce using rule 23 (Declaracao -> Declaracao_Se .)
+    REPITA          reduce using rule 23 (Declaracao -> Declaracao_Se .)
+    IDENTIFICADOR   reduce using rule 23 (Declaracao -> Declaracao_Se .)
+    LEIA            reduce using rule 23 (Declaracao -> Declaracao_Se .)
+    ESCREVA         reduce using rule 23 (Declaracao -> Declaracao_Se .)
+    RETORNA         reduce using rule 23 (Declaracao -> Declaracao_Se .)
+    INTEIRO         reduce using rule 23 (Declaracao -> Declaracao_Se .)
+    FLUTUANTE       reduce using rule 23 (Declaracao -> Declaracao_Se .)
+    VAZIO           reduce using rule 23 (Declaracao -> Declaracao_Se .)
+    ATE             reduce using rule 23 (Declaracao -> Declaracao_Se .)
+
+
+state 46
+
+    (27) Declaracao -> Declaracao_Escreva .
+
+    FIM             reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+    SENAO           reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+    SE              reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+    REPITA          reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+    IDENTIFICADOR   reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+    LEIA            reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+    ESCREVA         reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+    RETORNA         reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+    INTEIRO         reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+    FLUTUANTE       reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+    VAZIO           reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+    ATE             reduce using rule 27 (Declaracao -> Declaracao_Escreva .)
+
+
+state 47
+
+    (32) Declaracao_Repita -> REPITA . Conjunto_Declaracoes ATE Conjunto_Expressao
+    (21) Conjunto_Declaracoes -> . Conjunto_Declaracoes Declaracao
+    (22) Conjunto_Declaracoes -> . Declaracao
+    (23) Declaracao -> . Declaracao_Se
+    (24) Declaracao -> . Declaracao_Repita
+    (25) Declaracao -> . Declaracao_Atribuicao
+    (26) Declaracao -> . Declaracao_Leia
+    (27) Declaracao -> . Declaracao_Escreva
+    (28) Declaracao -> . Declaracao_Variavel
+    (29) Declaracao -> . Declaracao_Retorno
+    (30) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (32) Declaracao_Repita -> . REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+    (33) Declaracao_Atribuicao -> . IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
+    (34) Declaracao_Leia -> . LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+    (35) Declaracao_Escreva -> . ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (36) Declaracao_Retorno -> . RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    SE              shift and go to state 44
+    REPITA          shift and go to state 47
+    IDENTIFICADOR   shift and go to state 42
+    LEIA            shift and go to state 37
+    ESCREVA         shift and go to state 38
+    RETORNA         shift and go to state 43
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+
+    Declaracao                     shift and go to state 39
+    Conjunto_Declaracoes           shift and go to state 71
+    Tipo                           shift and go to state 34
+    Declaracao_Leia                shift and go to state 41
+    Declaracao_Retorno             shift and go to state 35
+    Declaracao_Variavel            shift and go to state 36
+    Declaracao_Se                  shift and go to state 45
+    Declaracao_Escreva             shift and go to state 46
+    Declaracao_Repita              shift and go to state 48
+    Declaracao_Atribuicao          shift and go to state 49
+
+state 48
+
+    (24) Declaracao -> Declaracao_Repita .
+
+    FIM             reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+    SENAO           reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+    SE              reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+    REPITA          reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+    IDENTIFICADOR   reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+    LEIA            reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+    ESCREVA         reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+    RETORNA         reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+    INTEIRO         reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+    FLUTUANTE       reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+    VAZIO           reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+    ATE             reduce using rule 24 (Declaracao -> Declaracao_Repita .)
+
+
+state 49
+
+    (25) Declaracao -> Declaracao_Atribuicao .
+
+    FIM             reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+    SENAO           reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+    SE              reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+    REPITA          reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+    IDENTIFICADOR   reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+    LEIA            reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+    ESCREVA         reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+    RETORNA         reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+    INTEIRO         reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+    FLUTUANTE       reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+    VAZIO           reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+    ATE             reduce using rule 25 (Declaracao -> Declaracao_Atribuicao .)
+
+
+state 50
+
+    (11) Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM .
+
+    VAZIO           reduce using rule 11 (Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM .)
+    INTEIRO         reduce using rule 11 (Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM .)
+    FLUTUANTE       reduce using rule 11 (Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM .)
+    $end            reduce using rule 11 (Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM .)
+
+
+state 51
+
+    (10) Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes . FIM
+    (21) Conjunto_Declaracoes -> Conjunto_Declaracoes . Declaracao
+    (23) Declaracao -> . Declaracao_Se
+    (24) Declaracao -> . Declaracao_Repita
+    (25) Declaracao -> . Declaracao_Atribuicao
+    (26) Declaracao -> . Declaracao_Leia
+    (27) Declaracao -> . Declaracao_Escreva
+    (28) Declaracao -> . Declaracao_Variavel
+    (29) Declaracao -> . Declaracao_Retorno
+    (30) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (32) Declaracao_Repita -> . REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+    (33) Declaracao_Atribuicao -> . IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
+    (34) Declaracao_Leia -> . LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+    (35) Declaracao_Escreva -> . ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (36) Declaracao_Retorno -> . RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    FIM             shift and go to state 72
+    SE              shift and go to state 44
+    REPITA          shift and go to state 47
+    IDENTIFICADOR   shift and go to state 42
+    LEIA            shift and go to state 37
+    ESCREVA         shift and go to state 38
+    RETORNA         shift and go to state 43
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+
+    Declaracao                     shift and go to state 56
+    Tipo                           shift and go to state 34
+    Declaracao_Leia                shift and go to state 41
+    Declaracao_Retorno             shift and go to state 35
+    Declaracao_Variavel            shift and go to state 36
+    Declaracao_Se                  shift and go to state 45
+    Declaracao_Escreva             shift and go to state 46
+    Declaracao_Repita              shift and go to state 48
+    Declaracao_Atribuicao          shift and go to state 49
+
+state 52
+
+    (15) Conjunto_Parametros -> Tipo DOISPONTOS IDENTIFICADOR . VIRGULA Conjunto_Parametros
+    (16) Conjunto_Parametros -> Tipo DOISPONTOS IDENTIFICADOR .
+
+    VIRGULA         shift and go to state 73
+    FECHAPARENTES   reduce using rule 16 (Conjunto_Parametros -> Tipo DOISPONTOS IDENTIFICADOR .)
+
+
+state 53
+
+    (34) Declaracao_Leia -> LEIA ABREPARENTES . IDENTIFICADOR FECHAPARENTES
+
+    IDENTIFICADOR   shift and go to state 74
+
+
+state 54
+
+    (35) Declaracao_Escreva -> ESCREVA ABREPARENTES . Conjunto_Expressao FECHAPARENTES
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 75
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 55
+
+    (8) Funcao_Principal -> VAZIO PRINCIPAL ABREPARENTES FECHAPARENTES Conjunto_Declaracoes FIM .
+
+    $end            reduce using rule 8 (Funcao_Principal -> VAZIO PRINCIPAL ABREPARENTES FECHAPARENTES Conjunto_Declaracoes FIM .)
+
+
+state 56
+
+    (21) Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .
+
+    FIM             reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+    SE              reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+    REPITA          reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+    IDENTIFICADOR   reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+    LEIA            reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+    ESCREVA         reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+    RETORNA         reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+    INTEIRO         reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+    FLUTUANTE       reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+    VAZIO           reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+    SENAO           reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+    ATE             reduce using rule 21 (Conjunto_Declaracoes -> Conjunto_Declaracoes Declaracao .)
+
+
+state 57
+
+    (33) Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 76
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 58
+
+    (36) Declaracao_Retorno -> RETORNA ABREPARENTES . Conjunto_Expressao FECHAPARENTES
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 77
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 59
+
+    (37) Conjunto_Expressao -> Expressao_ID .
+    (47) Expressao_ID -> Expressao_ID . VIRGULA IDENTIFICADOR
+
+  ! shift/reduce conflict for VIRGULA resolved as shift
+    SOMA            reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    SUBTRACAO       reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    MULTIPLICACAO   reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    DIVISAO         reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    MAIOR           reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    MENOR           reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    MAIORIGUAL      reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    MENORIGUAL      reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    IGUALDADE       reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    ENTAO           reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    FECHAPARENTES   reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    FIM             reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    SE              reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    REPITA          reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    IDENTIFICADOR   reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    LEIA            reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    ESCREVA         reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    RETORNA         reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    INTEIRO         reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    FLUTUANTE       reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    VAZIO           reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    ATE             reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    SENAO           reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .)
+    VIRGULA         shift and go to state 78
+
+  ! VIRGULA         [ reduce using rule 37 (Conjunto_Expressao -> Expressao_ID .) ]
+
+
+state 60
+
+    (42) Conjunto_Expressao -> Chama_Funcao .
+
+    SOMA            reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    SUBTRACAO       reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    MULTIPLICACAO   reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    DIVISAO         reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    MAIOR           reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    MENOR           reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    MAIORIGUAL      reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    MENORIGUAL      reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    IGUALDADE       reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    ENTAO           reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    FECHAPARENTES   reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    FIM             reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    SE              reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    REPITA          reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    IDENTIFICADOR   reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    LEIA            reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    ESCREVA         reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    RETORNA         reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    INTEIRO         reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    FLUTUANTE       reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    VAZIO           reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    ATE             reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    SENAO           reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+    VIRGULA         reduce using rule 42 (Conjunto_Expressao -> Chama_Funcao .)
+
+
+state 61
+
+    (30) Declaracao_Se -> SE Conjunto_Expressao . ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> SE Conjunto_Expressao . ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    ENTAO           shift and go to state 80
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+    MAIOR           shift and go to state 88
+    MENOR           shift and go to state 83
+    MAIORIGUAL      shift and go to state 85
+    MENORIGUAL      shift and go to state 84
+    IGUALDADE       shift and go to state 79
+
+
+state 62
+
+    (60) Numero -> N_INTEIRO .
+
+    FECHAPARENTES   reduce using rule 60 (Numero -> N_INTEIRO .)
+    SOMA            reduce using rule 60 (Numero -> N_INTEIRO .)
+    SUBTRACAO       reduce using rule 60 (Numero -> N_INTEIRO .)
+    MULTIPLICACAO   reduce using rule 60 (Numero -> N_INTEIRO .)
+    DIVISAO         reduce using rule 60 (Numero -> N_INTEIRO .)
+    MAIOR           reduce using rule 60 (Numero -> N_INTEIRO .)
+    MENOR           reduce using rule 60 (Numero -> N_INTEIRO .)
+    MAIORIGUAL      reduce using rule 60 (Numero -> N_INTEIRO .)
+    MENORIGUAL      reduce using rule 60 (Numero -> N_INTEIRO .)
+    IGUALDADE       reduce using rule 60 (Numero -> N_INTEIRO .)
+    ENTAO           reduce using rule 60 (Numero -> N_INTEIRO .)
+    FIM             reduce using rule 60 (Numero -> N_INTEIRO .)
+    SE              reduce using rule 60 (Numero -> N_INTEIRO .)
+    REPITA          reduce using rule 60 (Numero -> N_INTEIRO .)
+    IDENTIFICADOR   reduce using rule 60 (Numero -> N_INTEIRO .)
+    LEIA            reduce using rule 60 (Numero -> N_INTEIRO .)
+    ESCREVA         reduce using rule 60 (Numero -> N_INTEIRO .)
+    RETORNA         reduce using rule 60 (Numero -> N_INTEIRO .)
+    INTEIRO         reduce using rule 60 (Numero -> N_INTEIRO .)
+    FLUTUANTE       reduce using rule 60 (Numero -> N_INTEIRO .)
+    VAZIO           reduce using rule 60 (Numero -> N_INTEIRO .)
+    ATE             reduce using rule 60 (Numero -> N_INTEIRO .)
+    SENAO           reduce using rule 60 (Numero -> N_INTEIRO .)
+    VIRGULA         reduce using rule 60 (Numero -> N_INTEIRO .)
+
+
+state 63
+
+    (61) Numero -> N_FLUTUANTE .
+
+    FECHAPARENTES   reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    SOMA            reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    SUBTRACAO       reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    MULTIPLICACAO   reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    DIVISAO         reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    MAIOR           reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    MENOR           reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    MAIORIGUAL      reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    MENORIGUAL      reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    IGUALDADE       reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    ENTAO           reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    FIM             reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    SE              reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    REPITA          reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    IDENTIFICADOR   reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    LEIA            reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    ESCREVA         reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    RETORNA         reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    INTEIRO         reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    FLUTUANTE       reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    VAZIO           reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    ATE             reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    SENAO           reduce using rule 61 (Numero -> N_FLUTUANTE .)
+    VIRGULA         reduce using rule 61 (Numero -> N_FLUTUANTE .)
+
+
+state 64
+
+    (48) Expressao_ID -> IDENTIFICADOR .
+    (45) Chama_Funcao -> IDENTIFICADOR . ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> IDENTIFICADOR . ABREPARENTES FECHAPARENTES
+
+    VIRGULA         reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    FECHAPARENTES   reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    SOMA            reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    SUBTRACAO       reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    MULTIPLICACAO   reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    DIVISAO         reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    MAIOR           reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    MENOR           reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    MAIORIGUAL      reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    MENORIGUAL      reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    IGUALDADE       reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    ENTAO           reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    FIM             reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    SE              reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    REPITA          reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    IDENTIFICADOR   reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    LEIA            reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    ESCREVA         reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    RETORNA         reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    INTEIRO         reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    FLUTUANTE       reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    VAZIO           reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    ATE             reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    SENAO           reduce using rule 48 (Expressao_ID -> IDENTIFICADOR .)
+    ABREPARENTES    shift and go to state 89
+
+
+state 65
+
+    (58) Expressao_Parenteses -> ABREPARENTES . Conjunto_Expressao FECHAPARENTES
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 90
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 66
+
+    (40) Conjunto_Expressao -> Expressao_Parenteses .
+
+    SOMA            reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    SUBTRACAO       reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    MULTIPLICACAO   reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    DIVISAO         reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    MAIOR           reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    MENOR           reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    MAIORIGUAL      reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    MENORIGUAL      reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    IGUALDADE       reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    ENTAO           reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    FECHAPARENTES   reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    FIM             reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    SE              reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    REPITA          reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    IDENTIFICADOR   reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    LEIA            reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    ESCREVA         reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    RETORNA         reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    INTEIRO         reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    FLUTUANTE       reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    VAZIO           reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    ATE             reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    SENAO           reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+    VIRGULA         reduce using rule 40 (Conjunto_Expressao -> Expressao_Parenteses .)
+
+
+state 67
+
+    (41) Conjunto_Expressao -> Expressao_Numero .
+
+    SOMA            reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    SUBTRACAO       reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    MULTIPLICACAO   reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    DIVISAO         reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    MAIOR           reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    MENOR           reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    MAIORIGUAL      reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    MENORIGUAL      reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    IGUALDADE       reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    ENTAO           reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    FECHAPARENTES   reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    FIM             reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    SE              reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    REPITA          reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    IDENTIFICADOR   reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    LEIA            reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    ESCREVA         reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    RETORNA         reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    INTEIRO         reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    FLUTUANTE       reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    VAZIO           reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    ATE             reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    SENAO           reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+    VIRGULA         reduce using rule 41 (Conjunto_Expressao -> Expressao_Numero .)
+
+
+state 68
+
+    (38) Conjunto_Expressao -> Expressao_Aritmetica .
+
+    SOMA            reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    SUBTRACAO       reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    MULTIPLICACAO   reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    DIVISAO         reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    MAIOR           reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    MENOR           reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    MAIORIGUAL      reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    MENORIGUAL      reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    IGUALDADE       reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    ENTAO           reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    FECHAPARENTES   reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    FIM             reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    SE              reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    REPITA          reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    IDENTIFICADOR   reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    LEIA            reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    ESCREVA         reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    RETORNA         reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    INTEIRO         reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    FLUTUANTE       reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    VAZIO           reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    ATE             reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    SENAO           reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+    VIRGULA         reduce using rule 38 (Conjunto_Expressao -> Expressao_Aritmetica .)
+
+
+state 69
+
+    (39) Conjunto_Expressao -> Expressao_Comparacional .
+
+    SOMA            reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    SUBTRACAO       reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    MULTIPLICACAO   reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    DIVISAO         reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    MAIOR           reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    MENOR           reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    MAIORIGUAL      reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    MENORIGUAL      reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    IGUALDADE       reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    ENTAO           reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    FECHAPARENTES   reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    FIM             reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    SE              reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    REPITA          reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    IDENTIFICADOR   reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    LEIA            reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    ESCREVA         reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    RETORNA         reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    INTEIRO         reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    FLUTUANTE       reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    VAZIO           reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    ATE             reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    SENAO           reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+    VIRGULA         reduce using rule 39 (Conjunto_Expressao -> Expressao_Comparacional .)
+
+
+state 70
+
+    (59) Expressao_Numero -> Numero .
+
+    SOMA            reduce using rule 59 (Expressao_Numero -> Numero .)
+    SUBTRACAO       reduce using rule 59 (Expressao_Numero -> Numero .)
+    MULTIPLICACAO   reduce using rule 59 (Expressao_Numero -> Numero .)
+    DIVISAO         reduce using rule 59 (Expressao_Numero -> Numero .)
+    MAIOR           reduce using rule 59 (Expressao_Numero -> Numero .)
+    MENOR           reduce using rule 59 (Expressao_Numero -> Numero .)
+    MAIORIGUAL      reduce using rule 59 (Expressao_Numero -> Numero .)
+    MENORIGUAL      reduce using rule 59 (Expressao_Numero -> Numero .)
+    IGUALDADE       reduce using rule 59 (Expressao_Numero -> Numero .)
+    ENTAO           reduce using rule 59 (Expressao_Numero -> Numero .)
+    FECHAPARENTES   reduce using rule 59 (Expressao_Numero -> Numero .)
+    FIM             reduce using rule 59 (Expressao_Numero -> Numero .)
+    SE              reduce using rule 59 (Expressao_Numero -> Numero .)
+    REPITA          reduce using rule 59 (Expressao_Numero -> Numero .)
+    IDENTIFICADOR   reduce using rule 59 (Expressao_Numero -> Numero .)
+    LEIA            reduce using rule 59 (Expressao_Numero -> Numero .)
+    ESCREVA         reduce using rule 59 (Expressao_Numero -> Numero .)
+    RETORNA         reduce using rule 59 (Expressao_Numero -> Numero .)
+    INTEIRO         reduce using rule 59 (Expressao_Numero -> Numero .)
+    FLUTUANTE       reduce using rule 59 (Expressao_Numero -> Numero .)
+    VAZIO           reduce using rule 59 (Expressao_Numero -> Numero .)
+    ATE             reduce using rule 59 (Expressao_Numero -> Numero .)
+    SENAO           reduce using rule 59 (Expressao_Numero -> Numero .)
+    VIRGULA         reduce using rule 59 (Expressao_Numero -> Numero .)
+
+
+state 71
+
+    (32) Declaracao_Repita -> REPITA Conjunto_Declaracoes . ATE Conjunto_Expressao
+    (21) Conjunto_Declaracoes -> Conjunto_Declaracoes . Declaracao
+    (23) Declaracao -> . Declaracao_Se
+    (24) Declaracao -> . Declaracao_Repita
+    (25) Declaracao -> . Declaracao_Atribuicao
+    (26) Declaracao -> . Declaracao_Leia
+    (27) Declaracao -> . Declaracao_Escreva
+    (28) Declaracao -> . Declaracao_Variavel
+    (29) Declaracao -> . Declaracao_Retorno
+    (30) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (32) Declaracao_Repita -> . REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+    (33) Declaracao_Atribuicao -> . IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
+    (34) Declaracao_Leia -> . LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+    (35) Declaracao_Escreva -> . ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (36) Declaracao_Retorno -> . RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    ATE             shift and go to state 91
+    SE              shift and go to state 44
+    REPITA          shift and go to state 47
+    IDENTIFICADOR   shift and go to state 42
+    LEIA            shift and go to state 37
+    ESCREVA         shift and go to state 38
+    RETORNA         shift and go to state 43
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+
+    Declaracao                     shift and go to state 56
+    Tipo                           shift and go to state 34
+    Declaracao_Leia                shift and go to state 41
+    Declaracao_Retorno             shift and go to state 35
+    Declaracao_Variavel            shift and go to state 36
+    Declaracao_Se                  shift and go to state 45
+    Declaracao_Escreva             shift and go to state 46
+    Declaracao_Repita              shift and go to state 48
+    Declaracao_Atribuicao          shift and go to state 49
+
+state 72
+
+    (10) Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM .
+
+    VAZIO           reduce using rule 10 (Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM .)
+    INTEIRO         reduce using rule 10 (Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM .)
+    FLUTUANTE       reduce using rule 10 (Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM .)
+    $end            reduce using rule 10 (Funcao -> Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM .)
+
+
+state 73
+
+    (15) Conjunto_Parametros -> Tipo DOISPONTOS IDENTIFICADOR VIRGULA . Conjunto_Parametros
+    (15) Conjunto_Parametros -> . Tipo DOISPONTOS IDENTIFICADOR VIRGULA Conjunto_Parametros
+    (16) Conjunto_Parametros -> . Tipo DOISPONTOS IDENTIFICADOR
+    (17) Conjunto_Parametros -> . empty
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+    (62) empty -> .
+
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+    FECHAPARENTES   reduce using rule 62 (empty -> .)
+
+    Conjunto_Parametros            shift and go to state 92
+    Tipo                           shift and go to state 28
+    empty                          shift and go to state 29
+
+state 74
+
+    (34) Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR . FECHAPARENTES
+
+    FECHAPARENTES   shift and go to state 93
+
+
+state 75
+
+    (35) Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao . FECHAPARENTES
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    FECHAPARENTES   shift and go to state 94
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+    MAIOR           shift and go to state 88
+    MENOR           shift and go to state 83
+    MAIORIGUAL      shift and go to state 85
+    MENORIGUAL      shift and go to state 84
+    IGUALDADE       shift and go to state 79
+
+
+state 76
+
+    (33) Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    ATE             reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    SE              reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    REPITA          reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    IDENTIFICADOR   reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    LEIA            reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    ESCREVA         reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    RETORNA         reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    INTEIRO         reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    FLUTUANTE       reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    VAZIO           reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    FIM             reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    SENAO           reduce using rule 33 (Declaracao_Atribuicao -> IDENTIFICADOR ATRIBUICAO Conjunto_Expressao .)
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+    MAIOR           shift and go to state 88
+    MENOR           shift and go to state 83
+    MAIORIGUAL      shift and go to state 85
+    MENORIGUAL      shift and go to state 84
+    IGUALDADE       shift and go to state 79
+
+
+state 77
+
+    (36) Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao . FECHAPARENTES
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    FECHAPARENTES   shift and go to state 95
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+    MAIOR           shift and go to state 88
+    MENOR           shift and go to state 83
+    MAIORIGUAL      shift and go to state 85
+    MENORIGUAL      shift and go to state 84
+    IGUALDADE       shift and go to state 79
+
+
+state 78
+
+    (47) Expressao_ID -> Expressao_ID VIRGULA . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 96
+
+
+state 79
+
+    (57) Expressao_Comparacional -> Conjunto_Expressao IGUALDADE . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 97
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 80
+
+    (30) Declaracao_Se -> SE Conjunto_Expressao ENTAO . Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> SE Conjunto_Expressao ENTAO . Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (21) Conjunto_Declaracoes -> . Conjunto_Declaracoes Declaracao
+    (22) Conjunto_Declaracoes -> . Declaracao
+    (23) Declaracao -> . Declaracao_Se
+    (24) Declaracao -> . Declaracao_Repita
+    (25) Declaracao -> . Declaracao_Atribuicao
+    (26) Declaracao -> . Declaracao_Leia
+    (27) Declaracao -> . Declaracao_Escreva
+    (28) Declaracao -> . Declaracao_Variavel
+    (29) Declaracao -> . Declaracao_Retorno
+    (30) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (32) Declaracao_Repita -> . REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+    (33) Declaracao_Atribuicao -> . IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
+    (34) Declaracao_Leia -> . LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+    (35) Declaracao_Escreva -> . ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (36) Declaracao_Retorno -> . RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    SE              shift and go to state 44
+    REPITA          shift and go to state 47
+    IDENTIFICADOR   shift and go to state 42
+    LEIA            shift and go to state 37
+    ESCREVA         shift and go to state 38
+    RETORNA         shift and go to state 43
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+
+    Declaracao                     shift and go to state 39
+    Conjunto_Declaracoes           shift and go to state 98
+    Tipo                           shift and go to state 34
+    Declaracao_Leia                shift and go to state 41
+    Declaracao_Retorno             shift and go to state 35
+    Declaracao_Variavel            shift and go to state 36
+    Declaracao_Se                  shift and go to state 45
+    Declaracao_Escreva             shift and go to state 46
+    Declaracao_Repita              shift and go to state 48
+    Declaracao_Atribuicao          shift and go to state 49
+
+state 81
+
+    (52) Expressao_Aritmetica -> Conjunto_Expressao DIVISAO . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 99
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 82
+
+    (49) Expressao_Aritmetica -> Conjunto_Expressao SOMA . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 100
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 83
+
+    (54) Expressao_Comparacional -> Conjunto_Expressao MENOR . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 101
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 84
+
+    (56) Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 102
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 85
+
+    (55) Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 103
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 86
+
+    (50) Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 104
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 87
+
+    (51) Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 105
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 88
+
+    (53) Expressao_Comparacional -> Conjunto_Expressao MAIOR . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 106
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 89
+
+    (45) Chama_Funcao -> IDENTIFICADOR ABREPARENTES . Parametros FECHAPARENTES
+    (46) Chama_Funcao -> IDENTIFICADOR ABREPARENTES . FECHAPARENTES
+    (43) Parametros -> . Parametros VIRGULA Conjunto_Expressao
+    (44) Parametros -> . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    FECHAPARENTES   shift and go to state 108
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Parametros                     shift and go to state 109
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 107
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 90
+
+    (58) Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao . FECHAPARENTES
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    FECHAPARENTES   shift and go to state 110
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+    MAIOR           shift and go to state 88
+    MENOR           shift and go to state 83
+    MAIORIGUAL      shift and go to state 85
+    MENORIGUAL      shift and go to state 84
+    IGUALDADE       shift and go to state 79
+
+
+state 91
+
+    (32) Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 111
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 92
+
+    (15) Conjunto_Parametros -> Tipo DOISPONTOS IDENTIFICADOR VIRGULA Conjunto_Parametros .
+
+    FECHAPARENTES   reduce using rule 15 (Conjunto_Parametros -> Tipo DOISPONTOS IDENTIFICADOR VIRGULA Conjunto_Parametros .)
+
+
+state 93
+
+    (34) Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .
+
+    FIM             reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+    SE              reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+    REPITA          reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+    IDENTIFICADOR   reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+    LEIA            reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+    ESCREVA         reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+    RETORNA         reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+    INTEIRO         reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+    FLUTUANTE       reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+    VAZIO           reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+    ATE             reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+    SENAO           reduce using rule 34 (Declaracao_Leia -> LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES .)
+
+
+state 94
+
+    (35) Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .
+
+    FIM             reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    SE              reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    REPITA          reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    IDENTIFICADOR   reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    LEIA            reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    ESCREVA         reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    RETORNA         reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    INTEIRO         reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    FLUTUANTE       reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    VAZIO           reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    SENAO           reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    ATE             reduce using rule 35 (Declaracao_Escreva -> ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+
+
+state 95
+
+    (36) Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .
+
+    FIM             reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    SE              reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    REPITA          reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    IDENTIFICADOR   reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    LEIA            reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    ESCREVA         reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    RETORNA         reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    INTEIRO         reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    FLUTUANTE       reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    VAZIO           reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    SENAO           reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    ATE             reduce using rule 36 (Declaracao_Retorno -> RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+
+
+state 96
+
+    (47) Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .
+
+    VIRGULA         reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    FECHAPARENTES   reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    SOMA            reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    SUBTRACAO       reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    MULTIPLICACAO   reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    DIVISAO         reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    MAIOR           reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    MENOR           reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    MAIORIGUAL      reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    MENORIGUAL      reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    IGUALDADE       reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    ENTAO           reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    FIM             reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    SE              reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    REPITA          reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    IDENTIFICADOR   reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    LEIA            reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    ESCREVA         reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    RETORNA         reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    INTEIRO         reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    FLUTUANTE       reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    VAZIO           reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    ATE             reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+    SENAO           reduce using rule 47 (Expressao_ID -> Expressao_ID VIRGULA IDENTIFICADOR .)
+
+
+state 97
+
+    (57) Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    MAIOR           reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    MENOR           reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    MAIORIGUAL      reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    MENORIGUAL      reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    IGUALDADE       reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    FIM             reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    SE              reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    REPITA          reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    IDENTIFICADOR   reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    LEIA            reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    ESCREVA         reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    RETORNA         reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    INTEIRO         reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    FLUTUANTE       reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    VAZIO           reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    ATE             reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    SENAO           reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    FECHAPARENTES   reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    VIRGULA         reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    ENTAO           reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .)
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+
+  ! SOMA            [ reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .) ]
+  ! SUBTRACAO       [ reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .) ]
+  ! MULTIPLICACAO   [ reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .) ]
+  ! DIVISAO         [ reduce using rule 57 (Expressao_Comparacional -> Conjunto_Expressao IGUALDADE Conjunto_Expressao .) ]
+  ! MAIOR           [ shift and go to state 88 ]
+  ! MENOR           [ shift and go to state 83 ]
+  ! MAIORIGUAL      [ shift and go to state 85 ]
+  ! MENORIGUAL      [ shift and go to state 84 ]
+  ! IGUALDADE       [ shift and go to state 79 ]
+
+
+state 98
+
+    (30) Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes . FIM
+    (31) Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes . SENAO Conjunto_Declaracoes FIM
+    (21) Conjunto_Declaracoes -> Conjunto_Declaracoes . Declaracao
+    (23) Declaracao -> . Declaracao_Se
+    (24) Declaracao -> . Declaracao_Repita
+    (25) Declaracao -> . Declaracao_Atribuicao
+    (26) Declaracao -> . Declaracao_Leia
+    (27) Declaracao -> . Declaracao_Escreva
+    (28) Declaracao -> . Declaracao_Variavel
+    (29) Declaracao -> . Declaracao_Retorno
+    (30) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (32) Declaracao_Repita -> . REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+    (33) Declaracao_Atribuicao -> . IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
+    (34) Declaracao_Leia -> . LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+    (35) Declaracao_Escreva -> . ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (36) Declaracao_Retorno -> . RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    FIM             shift and go to state 112
+    SENAO           shift and go to state 113
+    SE              shift and go to state 44
+    REPITA          shift and go to state 47
+    IDENTIFICADOR   shift and go to state 42
+    LEIA            shift and go to state 37
+    ESCREVA         shift and go to state 38
+    RETORNA         shift and go to state 43
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+
+    Declaracao                     shift and go to state 56
+    Tipo                           shift and go to state 34
+    Declaracao_Leia                shift and go to state 41
+    Declaracao_Retorno             shift and go to state 35
+    Declaracao_Variavel            shift and go to state 36
+    Declaracao_Se                  shift and go to state 45
+    Declaracao_Escreva             shift and go to state 46
+    Declaracao_Repita              shift and go to state 48
+    Declaracao_Atribuicao          shift and go to state 49
+
+state 99
+
+    (52) Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    SOMA            reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    SUBTRACAO       reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    MULTIPLICACAO   reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    DIVISAO         reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    MAIOR           reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    MENOR           reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    MAIORIGUAL      reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    MENORIGUAL      reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    IGUALDADE       reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    FIM             reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    SE              reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    REPITA          reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    IDENTIFICADOR   reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    LEIA            reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    ESCREVA         reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    RETORNA         reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    INTEIRO         reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    FLUTUANTE       reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    VAZIO           reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    ATE             reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    SENAO           reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    FECHAPARENTES   reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    VIRGULA         reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+    ENTAO           reduce using rule 52 (Expressao_Aritmetica -> Conjunto_Expressao DIVISAO Conjunto_Expressao .)
+
+  ! SOMA            [ shift and go to state 82 ]
+  ! SUBTRACAO       [ shift and go to state 86 ]
+  ! MULTIPLICACAO   [ shift and go to state 87 ]
+  ! DIVISAO         [ shift and go to state 81 ]
+  ! MAIOR           [ shift and go to state 88 ]
+  ! MENOR           [ shift and go to state 83 ]
+  ! MAIORIGUAL      [ shift and go to state 85 ]
+  ! MENORIGUAL      [ shift and go to state 84 ]
+  ! IGUALDADE       [ shift and go to state 79 ]
+
+
+state 100
+
+    (49) Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    SOMA            reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    SUBTRACAO       reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    MAIOR           reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    MENOR           reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    MAIORIGUAL      reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    MENORIGUAL      reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    IGUALDADE       reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    FIM             reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    SE              reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    REPITA          reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    IDENTIFICADOR   reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    LEIA            reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    ESCREVA         reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    RETORNA         reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    INTEIRO         reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    FLUTUANTE       reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    VAZIO           reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    ATE             reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    SENAO           reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    FECHAPARENTES   reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    VIRGULA         reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    ENTAO           reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .)
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+
+  ! MULTIPLICACAO   [ reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .) ]
+  ! DIVISAO         [ reduce using rule 49 (Expressao_Aritmetica -> Conjunto_Expressao SOMA Conjunto_Expressao .) ]
+  ! SOMA            [ shift and go to state 82 ]
+  ! SUBTRACAO       [ shift and go to state 86 ]
+  ! MAIOR           [ shift and go to state 88 ]
+  ! MENOR           [ shift and go to state 83 ]
+  ! MAIORIGUAL      [ shift and go to state 85 ]
+  ! MENORIGUAL      [ shift and go to state 84 ]
+  ! IGUALDADE       [ shift and go to state 79 ]
+
+
+state 101
+
+    (54) Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    MAIOR           reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    MENOR           reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    MAIORIGUAL      reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    MENORIGUAL      reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    IGUALDADE       reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    FIM             reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    SE              reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    REPITA          reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    IDENTIFICADOR   reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    LEIA            reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    ESCREVA         reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    RETORNA         reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    INTEIRO         reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    FLUTUANTE       reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    VAZIO           reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    ATE             reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    SENAO           reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    FECHAPARENTES   reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    VIRGULA         reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    ENTAO           reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .)
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+
+  ! SOMA            [ reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .) ]
+  ! SUBTRACAO       [ reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .) ]
+  ! MULTIPLICACAO   [ reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .) ]
+  ! DIVISAO         [ reduce using rule 54 (Expressao_Comparacional -> Conjunto_Expressao MENOR Conjunto_Expressao .) ]
+  ! MAIOR           [ shift and go to state 88 ]
+  ! MENOR           [ shift and go to state 83 ]
+  ! MAIORIGUAL      [ shift and go to state 85 ]
+  ! MENORIGUAL      [ shift and go to state 84 ]
+  ! IGUALDADE       [ shift and go to state 79 ]
+
+
+state 102
+
+    (56) Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    MAIOR           reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    MENOR           reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    MAIORIGUAL      reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    MENORIGUAL      reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    IGUALDADE       reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    FIM             reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    SE              reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    REPITA          reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    IDENTIFICADOR   reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    LEIA            reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    ESCREVA         reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    RETORNA         reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    INTEIRO         reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    FLUTUANTE       reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    VAZIO           reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    ATE             reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    SENAO           reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    FECHAPARENTES   reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    VIRGULA         reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    ENTAO           reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .)
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+
+  ! SOMA            [ reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .) ]
+  ! SUBTRACAO       [ reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .) ]
+  ! MULTIPLICACAO   [ reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .) ]
+  ! DIVISAO         [ reduce using rule 56 (Expressao_Comparacional -> Conjunto_Expressao MENORIGUAL Conjunto_Expressao .) ]
+  ! MAIOR           [ shift and go to state 88 ]
+  ! MENOR           [ shift and go to state 83 ]
+  ! MAIORIGUAL      [ shift and go to state 85 ]
+  ! MENORIGUAL      [ shift and go to state 84 ]
+  ! IGUALDADE       [ shift and go to state 79 ]
+
+
+state 103
+
+    (55) Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    MAIOR           reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    MENOR           reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    MAIORIGUAL      reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    MENORIGUAL      reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    IGUALDADE       reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    FIM             reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    SE              reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    REPITA          reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    IDENTIFICADOR   reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    LEIA            reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    ESCREVA         reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    RETORNA         reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    INTEIRO         reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    FLUTUANTE       reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    VAZIO           reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    ATE             reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    SENAO           reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    FECHAPARENTES   reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    VIRGULA         reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    ENTAO           reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .)
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+
+  ! SOMA            [ reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .) ]
+  ! SUBTRACAO       [ reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .) ]
+  ! MULTIPLICACAO   [ reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .) ]
+  ! DIVISAO         [ reduce using rule 55 (Expressao_Comparacional -> Conjunto_Expressao MAIORIGUAL Conjunto_Expressao .) ]
+  ! MAIOR           [ shift and go to state 88 ]
+  ! MENOR           [ shift and go to state 83 ]
+  ! MAIORIGUAL      [ shift and go to state 85 ]
+  ! MENORIGUAL      [ shift and go to state 84 ]
+  ! IGUALDADE       [ shift and go to state 79 ]
+
+
+state 104
+
+    (50) Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    SOMA            reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    SUBTRACAO       reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    MAIOR           reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    MENOR           reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    MAIORIGUAL      reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    MENORIGUAL      reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    IGUALDADE       reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    FIM             reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    SE              reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    REPITA          reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    IDENTIFICADOR   reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    LEIA            reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    ESCREVA         reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    RETORNA         reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    INTEIRO         reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    FLUTUANTE       reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    VAZIO           reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    ATE             reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    SENAO           reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    FECHAPARENTES   reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    VIRGULA         reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    ENTAO           reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .)
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+
+  ! MULTIPLICACAO   [ reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .) ]
+  ! DIVISAO         [ reduce using rule 50 (Expressao_Aritmetica -> Conjunto_Expressao SUBTRACAO Conjunto_Expressao .) ]
+  ! SOMA            [ shift and go to state 82 ]
+  ! SUBTRACAO       [ shift and go to state 86 ]
+  ! MAIOR           [ shift and go to state 88 ]
+  ! MENOR           [ shift and go to state 83 ]
+  ! MAIORIGUAL      [ shift and go to state 85 ]
+  ! MENORIGUAL      [ shift and go to state 84 ]
+  ! IGUALDADE       [ shift and go to state 79 ]
+
+
+state 105
+
+    (51) Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    SOMA            reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    SUBTRACAO       reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    MULTIPLICACAO   reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    DIVISAO         reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    MAIOR           reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    MENOR           reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    MAIORIGUAL      reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    MENORIGUAL      reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    IGUALDADE       reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    FIM             reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    SE              reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    REPITA          reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    IDENTIFICADOR   reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    LEIA            reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    ESCREVA         reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    RETORNA         reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    INTEIRO         reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    FLUTUANTE       reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    VAZIO           reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    ATE             reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    SENAO           reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    FECHAPARENTES   reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    VIRGULA         reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+    ENTAO           reduce using rule 51 (Expressao_Aritmetica -> Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao .)
+
+  ! SOMA            [ shift and go to state 82 ]
+  ! SUBTRACAO       [ shift and go to state 86 ]
+  ! MULTIPLICACAO   [ shift and go to state 87 ]
+  ! DIVISAO         [ shift and go to state 81 ]
+  ! MAIOR           [ shift and go to state 88 ]
+  ! MENOR           [ shift and go to state 83 ]
+  ! MAIORIGUAL      [ shift and go to state 85 ]
+  ! MENORIGUAL      [ shift and go to state 84 ]
+  ! IGUALDADE       [ shift and go to state 79 ]
+
+
+state 106
+
+    (53) Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    MAIOR           reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    MENOR           reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    MAIORIGUAL      reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    MENORIGUAL      reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    IGUALDADE       reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    FIM             reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    SE              reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    REPITA          reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    IDENTIFICADOR   reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    LEIA            reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    ESCREVA         reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    RETORNA         reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    INTEIRO         reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    FLUTUANTE       reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    VAZIO           reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    ATE             reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    SENAO           reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    FECHAPARENTES   reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    VIRGULA         reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    ENTAO           reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .)
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+
+  ! SOMA            [ reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .) ]
+  ! SUBTRACAO       [ reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .) ]
+  ! MULTIPLICACAO   [ reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .) ]
+  ! DIVISAO         [ reduce using rule 53 (Expressao_Comparacional -> Conjunto_Expressao MAIOR Conjunto_Expressao .) ]
+  ! MAIOR           [ shift and go to state 88 ]
+  ! MENOR           [ shift and go to state 83 ]
+  ! MAIORIGUAL      [ shift and go to state 85 ]
+  ! MENORIGUAL      [ shift and go to state 84 ]
+  ! IGUALDADE       [ shift and go to state 79 ]
+
+
+state 107
+
+    (44) Parametros -> Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    FECHAPARENTES   reduce using rule 44 (Parametros -> Conjunto_Expressao .)
+    VIRGULA         reduce using rule 44 (Parametros -> Conjunto_Expressao .)
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+    MAIOR           shift and go to state 88
+    MENOR           shift and go to state 83
+    MAIORIGUAL      shift and go to state 85
+    MENORIGUAL      shift and go to state 84
+    IGUALDADE       shift and go to state 79
+
+
+state 108
+
+    (46) Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .
+
+    SOMA            reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    SUBTRACAO       reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    MULTIPLICACAO   reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    DIVISAO         reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    MAIOR           reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    MENOR           reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    MAIORIGUAL      reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    MENORIGUAL      reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    IGUALDADE       reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    FIM             reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    SE              reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    REPITA          reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    IDENTIFICADOR   reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    LEIA            reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    ESCREVA         reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    RETORNA         reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    INTEIRO         reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    FLUTUANTE       reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    VAZIO           reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    ATE             reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    SENAO           reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    FECHAPARENTES   reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    ENTAO           reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+    VIRGULA         reduce using rule 46 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES FECHAPARENTES .)
+
+
+state 109
+
+    (45) Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros . FECHAPARENTES
+    (43) Parametros -> Parametros . VIRGULA Conjunto_Expressao
+
+    FECHAPARENTES   shift and go to state 115
+    VIRGULA         shift and go to state 114
+
+
+state 110
+
+    (58) Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .
+
+    SOMA            reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    SUBTRACAO       reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    MULTIPLICACAO   reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    DIVISAO         reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    MAIOR           reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    MENOR           reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    MAIORIGUAL      reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    MENORIGUAL      reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    IGUALDADE       reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    FECHAPARENTES   reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    VIRGULA         reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    FIM             reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    SE              reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    REPITA          reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    IDENTIFICADOR   reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    LEIA            reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    ESCREVA         reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    RETORNA         reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    INTEIRO         reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    FLUTUANTE       reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    VAZIO           reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    ATE             reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    SENAO           reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+    ENTAO           reduce using rule 58 (Expressao_Parenteses -> ABREPARENTES Conjunto_Expressao FECHAPARENTES .)
+
+
+state 111
+
+    (32) Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    FIM             reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    SE              reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    REPITA          reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    IDENTIFICADOR   reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    LEIA            reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    ESCREVA         reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    RETORNA         reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    INTEIRO         reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    FLUTUANTE       reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    VAZIO           reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    ATE             reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    SENAO           reduce using rule 32 (Declaracao_Repita -> REPITA Conjunto_Declaracoes ATE Conjunto_Expressao .)
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+    MAIOR           shift and go to state 88
+    MENOR           shift and go to state 83
+    MAIORIGUAL      shift and go to state 85
+    MENORIGUAL      shift and go to state 84
+    IGUALDADE       shift and go to state 79
+
+
+state 112
+
+    (30) Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .
+
+    FIM             reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+    SE              reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+    REPITA          reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+    IDENTIFICADOR   reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+    LEIA            reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+    ESCREVA         reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+    RETORNA         reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+    INTEIRO         reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+    FLUTUANTE       reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+    VAZIO           reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+    SENAO           reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+    ATE             reduce using rule 30 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM .)
+
+
+state 113
+
+    (31) Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO . Conjunto_Declaracoes FIM
+    (21) Conjunto_Declaracoes -> . Conjunto_Declaracoes Declaracao
+    (22) Conjunto_Declaracoes -> . Declaracao
+    (23) Declaracao -> . Declaracao_Se
+    (24) Declaracao -> . Declaracao_Repita
+    (25) Declaracao -> . Declaracao_Atribuicao
+    (26) Declaracao -> . Declaracao_Leia
+    (27) Declaracao -> . Declaracao_Escreva
+    (28) Declaracao -> . Declaracao_Variavel
+    (29) Declaracao -> . Declaracao_Retorno
+    (30) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (32) Declaracao_Repita -> . REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+    (33) Declaracao_Atribuicao -> . IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
+    (34) Declaracao_Leia -> . LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+    (35) Declaracao_Escreva -> . ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (36) Declaracao_Retorno -> . RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    SE              shift and go to state 44
+    REPITA          shift and go to state 47
+    IDENTIFICADOR   shift and go to state 42
+    LEIA            shift and go to state 37
+    ESCREVA         shift and go to state 38
+    RETORNA         shift and go to state 43
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+
+    Declaracao                     shift and go to state 39
+    Conjunto_Declaracoes           shift and go to state 116
+    Tipo                           shift and go to state 34
+    Declaracao_Leia                shift and go to state 41
+    Declaracao_Retorno             shift and go to state 35
+    Declaracao_Variavel            shift and go to state 36
+    Declaracao_Se                  shift and go to state 45
+    Declaracao_Escreva             shift and go to state 46
+    Declaracao_Repita              shift and go to state 48
+    Declaracao_Atribuicao          shift and go to state 49
+
+state 114
+
+    (43) Parametros -> Parametros VIRGULA . Conjunto_Expressao
+    (37) Conjunto_Expressao -> . Expressao_ID
+    (38) Conjunto_Expressao -> . Expressao_Aritmetica
+    (39) Conjunto_Expressao -> . Expressao_Comparacional
+    (40) Conjunto_Expressao -> . Expressao_Parenteses
+    (41) Conjunto_Expressao -> . Expressao_Numero
+    (42) Conjunto_Expressao -> . Chama_Funcao
+    (47) Expressao_ID -> . Expressao_ID VIRGULA IDENTIFICADOR
+    (48) Expressao_ID -> . IDENTIFICADOR
+    (49) Expressao_Aritmetica -> . Conjunto_Expressao SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> . Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> . Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> . Conjunto_Expressao DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> . Conjunto_Expressao MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> . Conjunto_Expressao MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> . Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> . Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> . Conjunto_Expressao IGUALDADE Conjunto_Expressao
+    (58) Expressao_Parenteses -> . ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (59) Expressao_Numero -> . Numero
+    (45) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+    (46) Chama_Funcao -> . IDENTIFICADOR ABREPARENTES FECHAPARENTES
+    (60) Numero -> . N_INTEIRO
+    (61) Numero -> . N_FLUTUANTE
+
+    IDENTIFICADOR   shift and go to state 64
+    ABREPARENTES    shift and go to state 65
+    N_INTEIRO       shift and go to state 62
+    N_FLUTUANTE     shift and go to state 63
+
+    Expressao_ID                   shift and go to state 59
+    Expressao_Comparacional        shift and go to state 69
+    Expressao_Numero               shift and go to state 67
+    Expressao_Parenteses           shift and go to state 66
+    Numero                         shift and go to state 70
+    Conjunto_Expressao             shift and go to state 117
+    Chama_Funcao                   shift and go to state 60
+    Expressao_Aritmetica           shift and go to state 68
+
+state 115
+
+    (45) Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .
+
+    SOMA            reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    SUBTRACAO       reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    MULTIPLICACAO   reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    DIVISAO         reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    MAIOR           reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    MENOR           reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    MAIORIGUAL      reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    MENORIGUAL      reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    IGUALDADE       reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    FIM             reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    SE              reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    REPITA          reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    IDENTIFICADOR   reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    LEIA            reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    ESCREVA         reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    RETORNA         reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    INTEIRO         reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    FLUTUANTE       reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    VAZIO           reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    ATE             reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    SENAO           reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    FECHAPARENTES   reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    ENTAO           reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+    VIRGULA         reduce using rule 45 (Chama_Funcao -> IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES .)
+
+
+state 116
+
+    (31) Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes . FIM
+    (21) Conjunto_Declaracoes -> Conjunto_Declaracoes . Declaracao
+    (23) Declaracao -> . Declaracao_Se
+    (24) Declaracao -> . Declaracao_Repita
+    (25) Declaracao -> . Declaracao_Atribuicao
+    (26) Declaracao -> . Declaracao_Leia
+    (27) Declaracao -> . Declaracao_Escreva
+    (28) Declaracao -> . Declaracao_Variavel
+    (29) Declaracao -> . Declaracao_Retorno
+    (30) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+    (31) Declaracao_Se -> . SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    (32) Declaracao_Repita -> . REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+    (33) Declaracao_Atribuicao -> . IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
+    (34) Declaracao_Leia -> . LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+    (35) Declaracao_Escreva -> . ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (12) Declaracao_Variavel -> . Tipo DOISPONTOS Variaveis
+    (36) Declaracao_Retorno -> . RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
+    (18) Tipo -> . INTEIRO
+    (19) Tipo -> . FLUTUANTE
+    (20) Tipo -> . VAZIO
+
+    FIM             shift and go to state 118
+    SE              shift and go to state 44
+    REPITA          shift and go to state 47
+    IDENTIFICADOR   shift and go to state 42
+    LEIA            shift and go to state 37
+    ESCREVA         shift and go to state 38
+    RETORNA         shift and go to state 43
+    INTEIRO         shift and go to state 3
+    FLUTUANTE       shift and go to state 11
+    VAZIO           shift and go to state 19
+
+    Declaracao                     shift and go to state 56
+    Tipo                           shift and go to state 34
+    Declaracao_Leia                shift and go to state 41
+    Declaracao_Retorno             shift and go to state 35
+    Declaracao_Variavel            shift and go to state 36
+    Declaracao_Se                  shift and go to state 45
+    Declaracao_Escreva             shift and go to state 46
+    Declaracao_Repita              shift and go to state 48
+    Declaracao_Atribuicao          shift and go to state 49
+
+state 117
+
+    (43) Parametros -> Parametros VIRGULA Conjunto_Expressao .
+    (49) Expressao_Aritmetica -> Conjunto_Expressao . SOMA Conjunto_Expressao
+    (50) Expressao_Aritmetica -> Conjunto_Expressao . SUBTRACAO Conjunto_Expressao
+    (51) Expressao_Aritmetica -> Conjunto_Expressao . MULTIPLICACAO Conjunto_Expressao
+    (52) Expressao_Aritmetica -> Conjunto_Expressao . DIVISAO Conjunto_Expressao
+    (53) Expressao_Comparacional -> Conjunto_Expressao . MAIOR Conjunto_Expressao
+    (54) Expressao_Comparacional -> Conjunto_Expressao . MENOR Conjunto_Expressao
+    (55) Expressao_Comparacional -> Conjunto_Expressao . MAIORIGUAL Conjunto_Expressao
+    (56) Expressao_Comparacional -> Conjunto_Expressao . MENORIGUAL Conjunto_Expressao
+    (57) Expressao_Comparacional -> Conjunto_Expressao . IGUALDADE Conjunto_Expressao
+
+    FECHAPARENTES   reduce using rule 43 (Parametros -> Parametros VIRGULA Conjunto_Expressao .)
+    VIRGULA         reduce using rule 43 (Parametros -> Parametros VIRGULA Conjunto_Expressao .)
+    SOMA            shift and go to state 82
+    SUBTRACAO       shift and go to state 86
+    MULTIPLICACAO   shift and go to state 87
+    DIVISAO         shift and go to state 81
+    MAIOR           shift and go to state 88
+    MENOR           shift and go to state 83
+    MAIORIGUAL      shift and go to state 85
+    MENORIGUAL      shift and go to state 84
+    IGUALDADE       shift and go to state 79
+
+
+state 118
+
+    (31) Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .
+
+    FIM             reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+    SE              reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+    REPITA          reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+    IDENTIFICADOR   reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+    LEIA            reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+    ESCREVA         reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+    RETORNA         reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+    INTEIRO         reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+    FLUTUANTE       reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+    VAZIO           reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+    SENAO           reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+    ATE             reduce using rule 31 (Declaracao_Se -> SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for VIRGULA in state 59 resolved as shift
