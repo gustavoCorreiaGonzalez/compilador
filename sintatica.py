@@ -20,7 +20,6 @@ class Tree:
         return self.type
 
     def __str__(self, level = 0):
-        print("| " * level + self.type + "\n")
         ret = "| " * level + self.type + "\n"
         level = level + 1
         for child in self.child:
@@ -36,53 +35,23 @@ precedence = (
 def p_programa(p):
     
     '''
-    Programa : Declaracao_Variavel_Global Declaracao_Funcao Funcao_Principal
-             | Declaracao_Funcao Funcao_Principal
-             | Funcao_Principal
+    Programa : Declaracoes Programa 
+             | Declaracoes
     '''
     
-    if (len(p) == 4):
-        p[0] = Tree('Programa_Global_Funcao_Principal', [p[1], p[2], p[3]])
-    elif (len(p) == 3):
-        p[0] = Tree('Programa_Funcao_Principal', [p[1], p[2]])
+    if (len(p) == 3):
+        p[0] = Tree('Programa_Global_Funcao_Principal', [p[1], p[2]])
     else:
-        p[0] = Tree('Programa_Principal', [p[1]])
+        p[0] = Tree('Programa_Funcao_Principal', [p[1]])
 
-def p_declaracao_variavel_global(p):
-
-    ''' 
-    Declaracao_Variavel_Global : Declaracao_Variavel_Global Declaracao_Variavel
-                               | Declaracao_Variavel 
-    '''
-
-    if(len(p) == 3):
-        p[0] = Tree('Declaracao_Variavel_Global_Global_Variavel', [p[1], p[2]])
-    else:
-        p[0] = Tree('Declaracao_Variavel_Global_Variavel', [p[1]])
-
-
-def p_declaracao_funcao(p):
+def p_declaracoes(p):
 
     '''
-    Declaracao_Funcao : Declaracao_Funcao Funcao
-                      | Funcao 
+    Declaracoes : Declaracao_Variavel
+                | Funcao
     '''
 
-    if(len(p) == 3):
-        p[0] = Tree('Declaracao_Funcao_Funcao_Funcao', [p[1], p[2]])
-    else:
-        p[0] = Tree('Declaracao_Funcao_Funcao', [p[1]])
-
-def p_funcao_principal(p):
-
-    '''
-    Funcao_Principal : VAZIO PRINCIPAL ABREPARENTES FECHAPARENTES Conjunto_Declaracoes FIM
-                     | empty
-    '''
-    if(len(p) == 7):
-        p[0] = Tree('Funcao_Principal', [p[5]], [p[1], p[2]])
-    else:
-        p[0] = Tree('Funcao_Principal_Empty', [])
+    p[0] = Tree('Declaracoes', [p[1]])
 
 def p_funcao(p):
 
@@ -134,15 +103,12 @@ def p_tipo(p):
     '''
     Tipo : INTEIRO
          | FLUTUANTE
-         | VAZIO
     '''
 
     if p[1] == 'inteiro':
         p[0] = Tree('Tipo_Inteiro', [], [p[1]])
     elif p[1] == 'flutuante':
         p[0] = Tree('Tipo_Flutuante', [], [p[1]])
-    else:
-        p[0] = Tree('Tipo_Vazio', [], [p[1]])
 
 def p_conjunto_declaracoes(p):
 
@@ -291,21 +257,9 @@ def p_expressao_parenteses(p):
 
 def p_expressao_numero(p):
 
-    'Expressao_Numero : Numero'
+    'Expressao_Numero : NUMERO'
 
-    p[0] = Tree('Expressao_Numero', [p[1]])
-
-def p_numero_inteiro(p):
-
-    'Numero : N_INTEIRO'
-
-    p[0] = Tree('Numero_Inteiro', [], [p[1]])
-
-def p_numemro_flueutante(p):
-
-    'Numero : N_FLUTUANTE'
-
-    p[0] = Tree('Numero_Flutuante', [], [p[1]])
+    p[0] = Tree('Expressao_Numero', [], p[1])
 
 def p_empty(p):
     ' empty : '

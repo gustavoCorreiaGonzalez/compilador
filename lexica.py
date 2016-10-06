@@ -23,14 +23,10 @@ keywords = {
     u'leia': 'LEIA',
     u'escreva': 'ESCREVA',
     u'inteiro': 'INTEIRO',
-    u'principal': 'PRINCIPAL',
     u'retorna': 'RETORNA',
-    u'vazio': 'VAZIO',
 }
 
 tokens = [
-    'N_FLUTUANTE',
-    'N_INTEIRO',
     'SOMA',
     'SUBTRACAO',
     'MULTIPLICACAO',
@@ -45,7 +41,8 @@ tokens = [
     'ABREPARENTES',
     'FECHAPARENTES',
     'DOISPONTOS',
-    'IDENTIFICADOR'
+    'IDENTIFICADOR',
+    'NUMERO'
 ] + list(keywords.values())
 
 t_SOMA = r'\+'
@@ -62,17 +59,7 @@ t_MAIORIGUAL = r'>='
 t_ABREPARENTES = r'\('
 t_FECHAPARENTES = r'\)'
 t_DOISPONTOS = r':'
-#t_NUMERO = r'[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?'
-
-def t_N_FLUTUANTE(t):
-    r'\d+(\.\d+)?(e(\+|\-)?(\d+))?'
-    t.value = float(t.value)
-    return t
-
-def t_N_INTEIRO(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
+t_NUMERO = r'[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?'
 
 def t_IDENTIFICADOR(t):
     r'[a-zA-Zá-ũÁ-Ũ][a-zA-Zá-ũÁ-Ũ0-9]*'
@@ -80,7 +67,7 @@ def t_IDENTIFICADOR(t):
     return t
 
 def t_COMMENTARIO(t):
-    r'{[^\{^\}]*}'
+    r'\{([^*]|\{.*\}|[\r\n])*\}'
 
 def t_NOVALINHA(t):
     r'\n+'

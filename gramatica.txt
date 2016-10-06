@@ -1,157 +1,76 @@
-<Programa> ::=  Declaracao_Variagel_Global Declaracao_Funcao Funcao_Principal
-              | Declaracao_Funcao Funcao_Principal
-              | Funcao_Principal
+Programa : Declaracoes Programa 
+         | Declaracoes
 
-<Declaracao_Variagel_Global> ::=  Declaracao_Variagel_Global Declara_Variavel
-                                | Declara_Variavel 
+Declaracoes : Declaracao_Variavel
+            | Funcao
 
-<Declaracao_Funcao> ::=  Declaracao_Funcao Funcao
-                       | Funcao
+Funcao : Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM
 
-<Funcao_Principal> : VAZIO PRINCIPAL ABREPARENTES FECHAPARENTES Conjunto_Declaracoes FIM
+Funcao : Tipo IDENTIFICADOR ABREPARENTES Conjunto_Parametros FECHAPARENTES FIM
 
-<Funcao> ::= Tipo ID ABREPARENTES Conjunto_Parametros FECHAPARENTES Conjunto_Declaracoes FIM'    
+Declaracao_Variavel : Tipo DOISPONTOS Variaveis
 
-<Declara_Variavel> ::= Tipo DOISPONTOS ID
+Variaveis : Variaveis VIRGULA IDENTIFICADOR
+          | IDENTIFICADOR 
 
-<Conjunto_Parametros> ::=  Tipo DOISPONTOS ID VIRGULA Conjunto_Parametros 
-                         | Tipo DOISPONTOS ID
-                         | empty 
+Conjunto_Parametros : Tipo DOISPONTOS IDENTIFICADOR VIRGULA Conjunto_Parametros 
+                    | Tipo DOISPONTOS IDENTIFICADOR
+                    | empty 
 
-<Tipo> ::=  INTEIRO
-          | FLUTUANTE
-          | VAZIO
+Tipo : INTEIRO
+     | FLUTUANTE
 
-<Conjunto_Declaracoes> ::=  Conjunto_Declaracoes Declaracao
-                          | Declaracao
+Conjunto_Declaracoes : Conjunto_Declaracoes Declaracao
+                     | Declaracao
 
-<Declaracao> ::=  Declaracao_Se
-				| Declaracao_Repita
-				| Declaracao_Atribuicao
-				| Declaracao_Leia
-				| Declaracao_Escreva
-				| Declaracao_Funcao
-				| Declara_Variavel
-				| Declaracao_Retorno
+Declaracao : Declaracao_Se
+           | Declaracao_Repita
+           | Declaracao_Atribuicao
+           | Declaracao_Leia
+           | Declaracao_Escreva
+           | Declaracao_Variavel
+           | Declaracao_Retorno
 
-<Declaracao_Se> ::=  SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
-				   | SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+Declaracao_Se : SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
+              | SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
 
-<Declaracao_Repita> ::= REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
+Declaracao_Repita : REPITA Conjunto_Declaracoes ATE Conjunto_Expressao
 
-<Declaracao_Atribuicao> ::= IDENTIFICADOR RECEBE Conjunto_Expressao
+Declaracao_Atribuicao : IDENTIFICADOR ATRIBUICAO Conjunto_Expressao
 
-<Declaracao_Leia> ::= LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
+Declaracao_Leia : LEIA ABREPARENTES IDENTIFICADOR FECHAPARENTES
 
-<Declaracao_Escreva> ::=  ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
-						| ESCREVA ABREPARENTES Chamada_Funcao FECHAPARENTES
+Declaracao_Escreva : ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES
 
-<Declaracao_Funcao> ::= IDENTIFICADOR Tipo
+Declaracao_Retorno : RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES
 
-<Declaracao_Retorno> ::=  RETORNA ABREPARENTES IDENTIFICADOR FECHAPARENTES
-						| RETORNA ABREPARENTES Numero FECHAPARENTES
+Conjunto_Expressao : Expressao_ID
+                   | Expressao_Aritmetica
+                   | Expressao_Comparacional
+                   | Expressao_Parenteses
+                   | Expressao_Numero
+                   | Chama_Funcao
 
-<Chamada_Funcao> ::= IDENTIFICADOR ABREPARENTES Parametro FECHAPARENTES
+Parametros : Parametros VIRGULA Conjunto_Expressao
+           | Conjunto_Expressao
 
-<Conjunto_Expressao> ::=  Conjunto_Expressao Comparacao Conjunto_Expressao
-					    | Conjunto_Expressao Soma_Subtracao Conjunto_Expressao
-					    | Conjunto_Expressao Multiplicacao_Divisao Conjunto_Expressao
-					    | Conjunto_Expressao
-					    | IDENTIFICADOR
-					    | Numero
+Chama_Funcao : IDENTIFICADOR ABREPARENTES Parametros FECHAPARENTES
+             | IDENTIFICADOR ABREPARENTES FECHAPARENTES
 
+Expressao_ID : Expressao_ID VIRGULA IDENTIFICADOR
+             | IDENTIFICADOR
 
-<Comparacao> ::=  <
-                | >
-                | <=
-                | >=
-                | =
+Expressao_Aritmetica : Conjunto_Expressao SOMA Conjunto_Expressao
+                     | Conjunto_Expressao SUBTRACAO Conjunto_Expressao
+                     | Conjunto_Expressao MULTIPLICACAO Conjunto_Expressao
+                     | Conjunto_Expressao DIVISAO Conjunto_Expressao
 
-<Soma_Subtracao> ::=  +
-                    | -
+Expressao_Comparacional : Conjunto_Expressao MAIOR Conjunto_Expressao
+                        | Conjunto_Expressao MENOR Conjunto_Expressao
+                        | Conjunto_Expressao MAIORIGUAL Conjunto_Expressao
+                        | Conjunto_Expressao MENORIGUAL Conjunto_Expressao
+                        | Conjunto_Expressao IGUALDADE Conjunto_Expressao
 
-<Multiplicacao_Divisao> ::=  *
-                           | /
+Expressao_Parenteses : ABREPARENTES Conjunto_Expressao FECHAPARENTES
 
-<Numero> ::=  INTEIRO
-            | FLUTUANTE
-
-
-
-
-
-==============================================================================
-
-def p_compara(t):
-    ''' compara : MENOR
-                | MAIOR
-                | MENORIGUAL
-                | MAIORIGUAL
-                | IGUAL '''
-    t[0] = AST('compara', [], [t[1]])
-
-def p_exprArit(t):
-    ''' exprArit : exprArit soma termo 
-                 | termo '''
-    if (len(t) == 4):
-        t[0] = AST('exprAritComp', [t[1], t[2], t[3]])
-    else:
-        t[0] = AST('exprArit', [t[1]])
-
-def p_soma(t):
-    ''' soma : MAIS
-             | MENOS '''
-    t[0] = AST('maisMenos', [], [t[1]])
-
-def p_termo(t):
-    ''' termo : termo multi fator
-              | fator '''
-    if (len(t) == 4):
-        t[0] = AST('termoComp', [t[1], t[2], t[3]])
-    else:
-        t[0] = AST('termo', [t[1]])
-
-def p_multi(t):
-    ''' multi : VEZES
-              | DIVIDIR '''
-    t[0] = AST('vezesDividir', [], [t[1]])
-
-def p_fator_1(t):
-    ' fator : ABREPARENTES exprArit FECHAPARENTES '
-    t[0] = AST('fatorExprArit', [t[2]])
-
-def p_fator_2(t):
-    ' fator : num '
-    t[0] = AST('num', [t[1]])
-
-def p_fator_3(t):
-    ' fator : ID '
-    t[0] = AST('fatorID', [], [t[1]])
-
-def p_fator_4(t):
-    ' fator : chamaFuncao '
-    t[0] = AST('fatorChamaFuncao', [t[1]])
-
-def p_novaLinha(t):
-    ''' novaLinha : NOVALINHA 
-                  | NOVALINHA novaLinha '''
-
-def p_num_1(t):
-    ' num : N_INTEIRO '
-    t[0] = AST('n_inteiro', [], [t[1]])
-
-def p_num_2(t):
-    ' num : N_FLUTUANTE '
-    t[0] = AST('n_flutuante', [], [t[1]])
-
-def p_empty(t):
-    ' empty : '
-
-def p_error(t):
-    if t:
-        print ("Erro sintático: '%s' Linha '%d" % (t.value, t.lineno))
-        exit(1)
-    else:
-        yacc.restart()
-        print ("Erro sintático")
-        exit(1)
+Expressao_Numero : NUMERO
