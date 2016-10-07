@@ -14,7 +14,7 @@ inteiro fatorial(inteiro: n)
 	fim
 fim
 
-vazio principal()
+inteiro principal()
 	leia(n)
 	escreva(fatorial())
 fim

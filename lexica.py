@@ -59,7 +59,7 @@ t_MAIORIGUAL = r'>='
 t_ABREPARENTES = r'\('
 t_FECHAPARENTES = r'\)'
 t_DOISPONTOS = r':'
-t_NUMERO = r'[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?'
+t_NUMERO = r'[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?'
 
 def t_IDENTIFICADOR(t):
     r'[a-zA-Zá-ũÁ-Ũ][a-zA-Zá-ũÁ-Ũ0-9]*'
