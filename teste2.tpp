@@ -1,6 +1,8 @@
-inteiro: n, g
+{Teste compiladores do João Martins Filho}
+
+inteiro: n, g, a, d, d,d,a
 flutuante: d,a
-inteiro fatorial(inteiro: n)
+inteiro fatorial(inteiro: n, inteiro: g, inteiro: ga)
 	d := 5.6 
 	inteiro: fat
 	fat := 2e+89 + 67*12
@@ -21,14 +23,13 @@ inteiro fatorial(inteiro: n)
 		fim
 	fim
 	teste := (5+10)*14
-	teste := 5+10*14
+	teste := 5+ 10*14
 	teste := 5-(1+5)
 	teste := 5-1
-	teste := 10*3
+	teste := -10+10
 fim
 
 inteiro faznada()
-
 fim
 
 inteiro principal()
@@ -36,3 +37,4 @@ inteiro principal()
 	escreva(fatorial(fatorial(n<1,a),n+2))
 fim
 
+inteiro: n, g

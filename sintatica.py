@@ -138,8 +138,8 @@ def p_declaracao(p):
 def p_declaracao_se(p):
     
     '''
-    Declaracao_Se : SE Conjunto_Expressao ENTAO Conjunto_Declaracoes FIM
-                  | SE Conjunto_Expressao ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
+    Declaracao_Se : SE Expressao_Comparacional ENTAO Conjunto_Declaracoes FIM
+                  | SE Expressao_Comparacional ENTAO Conjunto_Declaracoes SENAO Conjunto_Declaracoes FIM
     '''
 
     if (len(p) == 6):
@@ -149,7 +149,7 @@ def p_declaracao_se(p):
 
 def p_declaracao_repita(p):
 
-    'Declaracao_Repita : REPITA Conjunto_Declaracoes ATE Conjunto_Expressao'
+    'Declaracao_Repita : REPITA Conjunto_Declaracoes ATE Expressao_Comparacional'
     
     p[0] = Tree('Declaracao_Repita', [p[2], p[4]])
 
@@ -186,6 +186,7 @@ def p_conjunto_expressao(p):
                        | Expressao_Parenteses
                        | Expressao_Numero
                        | Chama_Funcao
+                       | Expressao_Unaria
     '''
 
     p[0] = Tree('Conjunto_Expressao', [p[1]])
@@ -235,7 +236,17 @@ def p_expressao_aritmetica(p):
                          | Conjunto_Expressao DIVISAO Conjunto_Expressao
     '''
 
-    p[0] = Tree('Expressao_Aritmetica', [p[1], p[3]], [p[2]])
+    p[0] = Tree('Expressao_Aritmetica', [p[1], p[3]])
+
+
+def p_expressao_aritmetica_unaria(p):
+
+    '''
+    Expressao_Unaria : SOMA Conjunto_Expressao
+                     | SUBTRACAO Conjunto_Expressao
+    '''
+    p[0] = Tree('Expressao_Unaria', [p[2]])
+
 
 def p_expressao_comparacional(p):
 
@@ -247,7 +258,7 @@ def p_expressao_comparacional(p):
                             | Conjunto_Expressao IGUALDADE Conjunto_Expressao
     '''
 
-    p[0] = Tree('Expressao_Aritmetica', [p[1], p[3]], [p[2]])
+    p[0] = Tree('Expressao_Aritmetica', [p[1], p[3]])
 
 def p_expressao_parenteses(p):
 
@@ -272,16 +283,8 @@ def p_error(p):
         print('Erro sintático: definições incompletas!')
         exit(1)
 
-# if __name__ == '__main__':
-#     from sys import argv, exit
-#     f = open(argv[1])
-#     Parser(f.read())
-
 if __name__ == '__main__':
     import sys
     parser = yacc.yacc(debug=True)
     code = open(sys.argv[1])
-    if 'a' in sys.argv:
-        print(parser.parse(code.read()))
-    else:
-        parser.parse(code.read())
+    print(parser.parse(code.read()))
