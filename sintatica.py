@@ -35,7 +35,7 @@ precedence = (
 def p_programa(p):
     
     '''
-    Programa : Declaracoes Programa 
+    Programa : Programa Declaracoes  
              | Declaracoes
     '''
     
@@ -132,6 +132,7 @@ def p_declaracao(p):
                | Declaracao_Escreva
                | Declaracao_Variavel
                | Declaracao_Retorno
+               | Chama_Funcao
     '''
     p[0] = tree('Declaracao', [p[1]])
 

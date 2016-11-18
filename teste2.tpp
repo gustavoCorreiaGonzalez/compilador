@@ -35,6 +35,5 @@ fim
 inteiro principal()
 	leia(n)
 	escreva(fatorial(fatorial(n<1,a),n+2))
+	fatorial(a)
 fim
-
-inteiro: n, g
