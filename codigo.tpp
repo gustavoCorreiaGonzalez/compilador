@@ -1,8 +1,8 @@
-inteiro: a,b
-flutuante: c,d
+flutuante teste()
+fim
+
 
 inteiro principal()
-	se a > 0 então
-		escreva(a)
-	fim
+	inteiro: f
+	teste()
 fim

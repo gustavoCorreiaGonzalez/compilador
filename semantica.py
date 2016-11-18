@@ -35,29 +35,30 @@ class semantica():
 		no_atual = node.child[1]
 
 		if no_atual.type == 'Variaveis':
-			if ('global@' + no_atual.value[0] in self.simbolos.keys()):
+			if (self.escopo + '@' + no_atual.value[0] in self.simbolos.keys()):
 				print("Erro semântico: ID '" + no_atual.value[0] + "' já foi declarado")
 				exit(1)
 
-			self.simbolos['global@' + no_atual.value[0]] = ['variável', tipo, 0, False]
+			self.simbolos[self.escopo + '@' + no_atual.value[0]] = ['variável', tipo, 0, False]
 		else:
 			while(no_atual.type == 'Variaveis_Virgula'):
-				if ('global@' + no_atual.value[0] in self.simbolos.keys()):
+				if (self.escopo + '@' + no_atual.value[0] in self.simbolos.keys()):
 					print("Erro semântico: ID '" + no_atual.value[0] + "' já foi declarado")
 					exit(1)
 
-				self.simbolos['global@' + no_atual.value[0]] = ['variável', tipo, 0, False]
+				self.simbolos[self.escopo + '@' + no_atual.value[0]] = ['variável', tipo, 0, False]
 
 				no_atual = no_atual.child[0]
 
-		if ('global@' + no_atual.value[0] in self.simbolos.keys()):
-			print("Erro semântico: ID '" + no_atual.value[0] + "' já foi declarado")
-			exit(1)
+		# if (self.escopo + '@' + no_atual.value[0] in self.simbolos.keys()):
+		# 	print("Erro semântico: ID '" + no_atual.value[0] + "' já foi declarado")
+		# 	exit(1)
 
-		self.simbolos['global@' + no_atual.value[0]] = ['variável', tipo, 0, False]
+		# self.simbolos[self.escopo + '@' + no_atual.value[0]] = ['variável', tipo, 0, False]
 		
 
 	def Funcao(self, node):
+		self.escopo = node.value[0]
 		tipo = self.getTipo(node.child[0])
 
 		if (node.value[0] in self.simbolos.keys()):
@@ -76,7 +77,7 @@ class semantica():
 		if len(node.child) > 0:
 			tipo = self.getTipo(node.child[0])
 			variaveis.append(tipo)
-			self.simbolos[str(self.escopo + '.' + node.value[0])] = ['variável', tipo, 0, True]
+			self.simbolos[str(self.escopo + '@' + node.value[0])] = ['variável', tipo, 0, True]
 			if len(node.child) > 1:
 				variaveis = variaveis + self.Conjunto_Parametros(node.child[1])
 		return variaveis
@@ -110,7 +111,7 @@ class semantica():
 		if node.child[0].type == 'Declaracao_Retorno':
 			self.Declaracao_Retorno(node.child[0])
 			
-		if node.child[0].type == 'Chama_Funcao':
+		if node.child[0].type == 'Chama_Funcao' or node.child[0].type == 'Chama_Funcao_Vazia':
 			self.Chama_Funcao(node.child[0])
 
 		
@@ -128,22 +129,44 @@ class semantica():
 		print('ac')
 
 	def Declaracao_Leia(self, node):
-		print('ad')
+		if (self.escopo + '@' + node.value[0] not in self.simbolos.keys()) and ('global@' + node.value[0] not in self.simbolos.keys()):
+			print('Erro semãntico: ID ' + node.value[0] + ' não declarado')
+			exit(1)	
+		elif self.escopo + '.' + node.value[0] in self.simbolos.keys():
+			self.simbolos[self.escopo + '@' + node.value[0]][3] = True
+		else:
+			self.simbolos['global@' + node.value[0]][3] = True
 
 	def Declaracao_Escreva(self, node):
 		self.Conjunto_Expressao(node.child[0])
 
 	def Declaracao_Retorno(self, node):
-		print('ag')
+		print('não sei o que fazer')
 
 	def Chama_Funcao(self, node):
-		print('ah')    
-	    
+		if node.type == 'Chama_Funcao':
+			self.Parametros(node.child[0])
+		else:
+			print('não sei o que fazer a')
+
+	def Parametros(self, node):
+		no_atual = node
+
+		print(no_atual.child[0])
+
+		if no_atual.type == 'Parametros':
+			self.Conjunto_Expressao(node.child[0])
+		else:
+			while(no_atual.type == 'Parametros_Virgula'):
+				self.Conjunto_Expressao(node.child[0])
+				no_atual = no_atual.child[0]
+
 	def Expressao_Comparacional(self, node):
-		print('Expressao_Comparacional')
+		self.Conjunto_Expressao(node.child[0])
+		self.Conjunto_Expressao(node.child[1])
 
 	def Conjunto_Expressao(self, node):
-		if node.child[0].type == 'Expressao_ID':
+		if node.child[0].type == 'Expressoes_ID' or node.child[0].type == 'Expressoes_ID_Virgula':
 			self.Expressao_ID(node.child[0])
 		
 		if node.child[0].type == 'Expressao_Aritmetica':
@@ -165,19 +188,37 @@ class semantica():
 			self.Expressao_Unaria(node.child[0])
 
 	def Expressao_ID(self, node):
-		print('ba')
+		no_atual = node
+
+		if no_atual.type == 'Expressoes_ID':
+			if (self.escopo + '@' + no_atual.value[0] not in self.simbolos.keys()):
+				print("Erro semântico: ID '" + no_atual.value[0] + "' não foi declarado")
+				exit(1)
+
+		else:
+			while(no_atual.type == 'Expressoes_ID_Virgula'):
+				if (self.escopo + '@' + no_atual.value[0] not in self.simbolos.keys()):
+					print("Erro semântico: ID '" + no_atual.value[0] + "' não foi declarado")
+					exit(1)
+
+				no_atual = no_atual.child[0]
+
+		if (self.escopo + '@' + no_atual.value[0] not in self.simbolos.keys()):
+			print("Erro semântico: ID '" + no_atual.value[0] + "' não foi declarado")
+			exit(1)
 
 	def Expressao_Aritmetica(self, node):
-		print('bb')
+		self.Conjunto_Expressao(node.child[0])
+		self.Conjunto_Expressao(node.child[1])
 
 	def Expressao_Parenteses(self, node):
 		self.Conjunto_Expressao(node.child[0])
 
 	def Expressao_Numero(self, node):
-		print('be')
+		print('não sei o que fazer kk')
 
 	def Expressao_Unaria(self, node):
-		print('bf')
+		self.Conjunto_Expressao(node.child[0])
 
 	def getTipo(self, node):
 		return node.value[0]

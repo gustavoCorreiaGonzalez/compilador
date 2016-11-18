@@ -259,7 +259,7 @@ def p_expressao_comparacional(p):
                             | Conjunto_Expressao IGUALDADE Conjunto_Expressao
     '''
 
-    p[0] = tree('Expressao_Aritmetica', [p[1], p[3]])
+    p[0] = tree('Expressao_Comparacional', [p[1], p[3]])
 
 def p_expressao_parenteses(p):
 
