@@ -59,7 +59,14 @@ t_MAIORIGUAL = r'>='
 t_ABREPARENTES = r'\('
 t_FECHAPARENTES = r'\)'
 t_DOISPONTOS = r':'
-t_NUMERO = r'[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?'
+
+def t_NUMERO(t):
+    r'[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?'
+    if ('e' in t.value) or ('E' in t.value) or ('.' in t.value):
+        t.value = float(t.value)
+    else:
+        t.value = int(t.value)
+    return t
 
 def t_IDENTIFICADOR(t):
     r'[a-zA-Zá-ũÁ-Ũ][a-zA-Zá-ũÁ-Ũ0-9]*'

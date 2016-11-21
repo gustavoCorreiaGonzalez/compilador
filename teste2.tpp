@@ -1,12 +1,12 @@
 {Teste compiladores do João Martins Filho}
 
-inteiro: n, g, a, d, d,d,a
-flutuante: d,a
+inteiro: n, g, a
+flutuante: d
 inteiro fatorial(inteiro: n, inteiro: g, inteiro: ga)
 	d := 5.6 
-	inteiro: fat
+	flutuante: fat
 	fat := 2e+89 + 67*12
-	se a > 10 então
+	se fat > 10 então
 		se n > 0 então {não calcula se n > 0}
 			fat := 1
 			repita
@@ -22,6 +22,7 @@ inteiro fatorial(inteiro: n, inteiro: g, inteiro: ga)
 			retorna(0 + 1)
 		fim
 	fim
+	inteiro: teste
 	teste := (5+10)*14
 	teste := 5+ 10*14
 	teste := 5-(1+5)
