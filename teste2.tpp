@@ -2,7 +2,7 @@
 
 inteiro: n, g, a
 flutuante: d
-inteiro fatorial(inteiro: n, inteiro: g, inteiro: ga)
+inteiro fatorial(inteiro: n, inteiro: g)
 	d := 5.6 
 	flutuante: fat
 	fat := 2e+89 + 67*12
@@ -22,12 +22,6 @@ inteiro fatorial(inteiro: n, inteiro: g, inteiro: ga)
 			retorna(0 + 1)
 		fim
 	fim
-	inteiro: teste
-	teste := (5+10)*14
-	teste := 5+ 10*14
-	teste := 5-(1+5)
-	teste := 5-1
-	teste := -10+10
 fim
 
 inteiro faznada()
@@ -35,6 +29,6 @@ fim
 
 inteiro principal()
 	leia(n)
-	escreva(fatorial(fatorial(n<1,a),n+2))
-	fatorial(a)
+	leia(a)
+	escreva(fatorial(fatorial(a,n),n))
 fim

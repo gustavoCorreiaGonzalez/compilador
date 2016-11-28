@@ -74,7 +74,7 @@ def t_IDENTIFICADOR(t):
     return t
 
 def t_COMMENTARIO(t):
-    r'\{([^*]|\{.*\}|[\r\n])*\}'
+    r'({(.|\n)*?\})'
 
 def t_NOVALINHA(t):
     r'\n+'

@@ -1,3 +1,12 @@
 lr(1) -> exercico
 
 lalr(1) -> conceito
+
+1,5 lex
+2 sinta
+1,5 sem
+2 gera
+2 prova
+1 exercicio
+
+-> variável declarada mas não utilizada

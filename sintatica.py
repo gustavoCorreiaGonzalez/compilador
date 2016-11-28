@@ -218,15 +218,9 @@ def p_chama_funcao(p):
 
 def p_expressoes_id(p):
 
-    '''
-    Expressao_ID : Expressao_ID VIRGULA IDENTIFICADOR
-                 | IDENTIFICADOR 
-    '''
+    'Expressao_ID : IDENTIFICADOR'
 
-    if(len(p) == 4):
-        p[0] = tree('Expressoes_ID_Virgula', [p[1]], p[3])
-    else:
-        p[0] = tree('Expressoes_ID', [], p[1])
+    p[0] = tree('Expressoes_ID', [], p[1])
 
 def p_expressao_aritmetica(p):
 
@@ -237,7 +231,7 @@ def p_expressao_aritmetica(p):
                          | Conjunto_Expressao DIVISAO Conjunto_Expressao
     '''
 
-    p[0] = tree('Expressao_Aritmetica', [p[1], p[3]])
+    p[0] = tree('Expressao_Aritmetica', [p[1], p[3]], p[2])
 
 
 def p_expressao_aritmetica_unaria(p):
@@ -246,7 +240,8 @@ def p_expressao_aritmetica_unaria(p):
     Expressao_Unaria : SOMA Conjunto_Expressao
                      | SUBTRACAO Conjunto_Expressao
     '''
-    p[0] = tree('Expressao_Unaria', [p[2]])
+
+    p[0] = tree('Expressao_Unaria', [p[2]], p[1])
 
 
 def p_expressao_comparacional(p):
@@ -259,7 +254,7 @@ def p_expressao_comparacional(p):
                             | Conjunto_Expressao IGUALDADE Conjunto_Expressao
     '''
 
-    p[0] = tree('Expressao_Comparacional', [p[1], p[3]])
+    p[0] = tree('Expressao_Comparacional', [p[1], p[3]], p[2])
 
 def p_expressao_parenteses(p):
 

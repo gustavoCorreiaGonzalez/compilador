@@ -1,23 +1,6 @@
-inteiro: Gusta,YUDI
+flutuante:c
 
-inteiro teste2(inteiro:e)
-	Gusta:= 4
-	YUDI:= 3
-	flutuante: as
-	leia(as)
-	retorna(as)
-fim
+inteiro principal()
+	c:=1
 
-inteiro: zica
-
-inteiro teste(inteiro:c)
-
-fim
-
-inteiro pricipal()
-	inteiro: Gustaa
-
-	leia(Gusta)
-	teste(Gusta)
-	teste2(Gusta)
 fim
