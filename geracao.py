@@ -1,6 +1,7 @@
 from llvmlite import ir, binding
 from semantica import Semantica
 from sintatica import *
+from subprocess import call
 from sys import exit
 import os
 
@@ -17,6 +18,10 @@ class geracao:
 		self.tipo_variavel = None
 		self.escopo = 'global'
 		self.modulo = ir.Module('programa')
+		self.escrevaFlutuante = ir.Function(self.modulo, ir.FunctionType(ir.FloatType(), [ir.FloatType()]), 'escrevaFlutuante')
+		self.escrevaInteiro = ir.Function(self.modulo, ir.FunctionType(ir.IntType(32), [ir.IntType(32)]), 'escrevaInteiro')
+		self.leiaFlutuante = ir.Function(self.modulo, ir.FunctionType(ir.FloatType(), []), 'leiaFlutuante')
+		self.leiaInteiro = ir.Function(self.modulo, ir.FunctionType(ir.IntType(32), []), 'leiaInteiro')
 
 		self.ger_programa(self.semantica)
 		print(self.modulo)
@@ -39,8 +44,6 @@ class geracao:
 			self.ger_declaracoes(no.child[1])
 		else:
 			self.ger_declaracoes(no.child[0])
-
-
 
 # def p_declaracoes(p):
 
@@ -75,10 +78,21 @@ class geracao:
 
 		lista_parametros = self.ger_conjunto_parametros(no.child[1])
 
-		função = ir.FunctionType(tipo, [lista_parametros[i][0] for i in range(0, len(lista_parametros))])
-		self.func = ir.Function(self.modulo, função, name = no.value[0])
-		bloco = self.func.append_basic_block('entry')
-		self.construtor = ir.IRBuilder(bloco)
+		if no.value[0] == 'principal':
+			função = ir.FunctionType(tipo, [lista_parametros[i][0] for i in range(0, len(lista_parametros))])
+			self.func = ir.Function(self.modulo, função, name = 'main')
+			bloco = self.func.append_basic_block('entry')
+			self.construtor = ir.IRBuilder(bloco)
+		else:
+			função = ir.FunctionType(tipo, [lista_parametros[i][0] for i in range(0, len(lista_parametros))])
+			self.func = ir.Function(self.modulo, função, name = no.value[0])
+			bloco = self.func.append_basic_block('entry')
+			self.construtor = ir.IRBuilder(bloco)
+
+		for i, param in enumerate(lista_parametros):
+			self.func.args[i].name = param[1]
+			self.simbolos[self.escopo + '@' + param[1]][2] = self.construtor.alloca(param[0], name = param[1])
+			self.construtor.store(self.func.args[i], self.simbolos[self.escopo + '@' + param[1]][2])
 
 		if no.type == 'Funcao':
 			self.ger_conjunto_declaracoes(no.child[2])
@@ -218,19 +232,19 @@ class geracao:
 		# 	self.Declaracao_Repita(no.child[0])
 		
 		if no.child[0].type == 'Declaracao_Atribuicao':
-		 	self.ger_declaracao_atribuicao(no.child[0])
+			self.ger_declaracao_atribuicao(no.child[0])
+
+		if no.child[0].type == 'Declaracao_Leia':
+			self.ger_declaracao_leia(no.child[0])
 		
-		# if no.child[0].type == 'Declaracao_Leia':
-		# 	self.Declaracao_Leia(no.child[0])
-		
-		# if no.child[0].type == 'Declaracao_Escreva':
-		# 	self.Declaracao_Escreva(no.child[0])
+		if no.child[0].type == 'Declaracao_Escreva':
+			self.ger_declaracao_escreva(no.child[0])
 
 		if no.child[0].type == 'Declaracao_Variavel':
 			self.ger_declaracao_variavel(no.child[0])
 
-		# if no.child[0].type == 'Declaracao_Retorno':
-		# 	self.Declaracao_Retorno(no.child[0])
+		if no.child[0].type == 'Declaracao_Retorno':
+			self.ger_declaracao_retorna(no.child[0])
 			
 		if no.child[0].type == 'Chama_Funcao' or no.child[0].type == 'Chama_Funcao_Vazia':
 			self.ger_chama_funcao(no.child[0])
@@ -247,6 +261,15 @@ class geracao:
 #         p[0] = tree('Declaracao_Se', [p[2], p[4]])
 #     else:
 #         p[0] = tree('Declaracao_Senao', [p[2], p[4], p[6]])  
+
+	def ger_declaracao_se(self, no):
+		pass
+		# formula a condição
+		# cond = self.ger_conjunto_declaracoes(no.child[0])
+        # adiciona os blocos básicos
+        # entao_block = self.func.append_basic_block('then')
+        # senao_block = self.func.append_basic_block('else')
+        # merge_block = self.func.append_basic_block('ifcont')
 
 # def p_declaracao_repita(p):
 
@@ -283,17 +306,55 @@ class geracao:
 	
 #     p[0] = tree('Declaracao_Leia', [], p[3])
 
+	def ger_declaracao_leia(self, no):
+		if self.escopo + '@' + no.value[0] in self.simbolos.keys():
+			if self.simbolos[self.escopo + '@' + no.value[0]][1] == 'inteiro':
+				valor = self.construtor.call(self.leiaInteiro, [])
+			else:
+				valor = self.construtor.call(self.leiaFlutuante, [])
+		else:
+			if self.simbolos['global@' + no.value[0]][1] == 'inteiro':
+				valor = self.construtor.call(self.leiaInteiro, [])
+			else:
+				valor = self.construtor.call(self.leiaFlutuante, [])
+		return self.construtor.store(valor, self.simbolos[self.escopo + '@' + no.value[0]][2])
+
 # def p_declaracao_escreva(p):
 
 #     'Declaracao_Escreva : ESCREVA ABREPARENTES Conjunto_Expressao FECHAPARENTES'
 	
 #     p[0] = tree('Declaracao_Escreva', [p[3]])
 
+	def ger_declaracao_escreva(self, no):
+		expressão = self.ger_conjunto_expressao(no.child[0])
+
+		print(expressão)
+
+		if str(expressão).split(' ')[0] == 'i32':
+			return self.construtor.call(self.escrevaInteiro, [expressão])
+		elif str(expressão).split(' ')[3] == 'i32,':
+			return self.construtor.call(self.escrevaInteiro, [expressão])
+		if str(expressão).split(' ')[0] == 'float':
+			return self.construtor.call(self.escrevaFlutuante, [expressão])	
+
+
+
 # def p_declaracao_retorna(p):
 	
 #     'Declaracao_Retorno : RETORNA ABREPARENTES Conjunto_Expressao FECHAPARENTES'
 	
 #     p[0] = tree('Declaracao_Retorno', [p[3]])
+
+	def ger_declaracao_retorna(self, no):
+		self.tipo_variavel = self.simbolos[self.escopo][1]
+
+		expressão = self.ger_conjunto_expressao(no.child[0])
+		
+		if self.phi:
+			return expressão
+		
+		return self.construtor.ret(expressão)
+		
 
 # def p_conjunto_expressao(p):
 
@@ -325,8 +386,8 @@ class geracao:
 		if no.child[0].type == 'Expressao_Numero':
 			return self.ger_expressao_numero(no.child[0], sinal)
 
-		# if no.child[0].type == 'Chama_Funcao':
-		# 	return self.ger_chama_funcao(no.child[0])
+		if no.child[0].type == 'Chama_Funcao':
+			return self.ger_chama_funcao(no.child[0])
 
 		if no.child[0].type == 'Expressao_Unaria':
 			return self.ger_expressao_unaria(no.child[0])
@@ -417,6 +478,8 @@ class geracao:
 		esquerda = self.ger_conjunto_expressao(no.child[0])
 		direita = self.ger_conjunto_expressao(no.child[1])
 
+		print(self.tipo_variavel)
+
 		if self.tipo_variavel == 'inteiro':
 			if no.value == '+':
 				return self.construtor.add(esquerda, direita, name='add')
@@ -478,6 +541,7 @@ class geracao:
 	def ger_expressao_parenteses(self, no):
 		self.ger_conjunto_expressao(no.child[0])
 
+
 # def p_expressao_numero(p):
 
 #     'Expressao_Numero : NUMERO'
@@ -485,33 +549,37 @@ class geracao:
 #     p[0] = tree('Expressao_Numero', [], p[1])
 
 	def ger_expressao_numero(self, no, sinal=''):
-		print(type(no.value))
+		teste = no.value
 
-		if sinal != '':
-			if self.tipo_variavel == 'inteiro':
-				no.value = int(str(sinal) + str(no.value))
-			else:
-				no.value = float(str(sinal) + str(no.value))
+		if sinal == '-':
+			teste = float(no.value) * -1
 
-		if self.tipo_variavel == 'inteiro' and type(no.value) == float:
-			valor = ir.Constant(ir.FloatType(), no.value)
+		if self.tipo_variavel == 'inteiro' and type(teste) == float:
+			valor = ir.Constant(ir.FloatType(), teste)
 
 			return self.construtor.fptosi(valor, ir.IntType(32))
 
-		if self.tipo_variavel == 'flutuante' and type(no.value) == int:
-			valor = ir.Constant(ir.IntType(32), no.value)
+		if self.tipo_variavel == 'flutuante' and type(teste) == int:
+			valor = ir.Constant(ir.IntType(32), teste)
 
 			return self.construtor.sitofp(valor, ir.FloatType())
-			
-		if type(no.value) == int:
-			return ir.Constant(ir.IntType(32), no.value)
+
+		if type(teste) == int:
+			return ir.Constant(ir.IntType(32), teste)
 		else:
-			return ir.Constant(ir.FloatType(), no.value)
+			return ir.Constant(ir.FloatType(), teste)
 
 if __name__ == '__main__':
-    import sys
-    code = open(sys.argv[1])
-    codigo = geracao(code)
-    out = open('builder/program.ll', 'w')
-    out.write(str(codigo.modulo))
-    out.close()
+	import sys
+	code = open(sys.argv[1])
+	codigo = geracao(code)
+	out = open('builder/program.ll', 'w')
+	out.write(str(codigo.modulo))
+	out.close()
+
+	print("Compilando...")
+	call("llc-3.7 builder/program.ll --mtriple \"x86_64-pc-linux-gnu\"", shell=True)
+	call("gcc -c builder/program.s", shell=True)
+	call("gcc -o builder/resultado program.o builder/leiaEscreva.o", shell=True)
+	call("builder/./resultado", shell=True)
+	print("Pronto.")

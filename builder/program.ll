@@ -1,10 +1,19 @@
 ; ModuleID = "programa"
+target triple = "unknown-unknown-unknown"
 target datalayout = ""
 
-@"c" = external global float
-define i32 @"principal"() 
+declare float @"escrevaFlutuante"(float %".1") 
+
+declare i32 @"escrevaInteiro"(i32 %".1") 
+
+declare float @"leiaFlutuante"() 
+
+declare i32 @"leiaInteiro"() 
+
+define i32 @"main"() 
 {
 entry:
-  %".2" = sitofp i32 1 to float
-  store float %".2", float* @"c"
+  %"add" = add i32 1, 3
+  %".2" = call i32 (i32) @"escrevaInteiro"(i32 %"add")
+  ret i32 0
 }

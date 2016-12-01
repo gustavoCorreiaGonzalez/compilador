@@ -1,6 +1,5 @@
-flutuante:c
-
 inteiro principal()
-	c:=1
+	escreva(1+3)
 
+	retorna(0)
 fim
