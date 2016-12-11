@@ -106,7 +106,7 @@ class Semantica():
 			self.Declaracao(node.child[0])
 
 	def Declaracao(self, node):
-		if node.child[0].type == 'Declaracao_Se':
+		if node.child[0].type == 'Declaracao_Se' or node.child[0].type == 'Declaracao_Senao':
 			self.Declaracao_Se(node.child[0])
 		
 		if node.child[0].type == 'Declaracao_Repita':
@@ -231,7 +231,7 @@ class Semantica():
 		if node.child[0].type == 'Expressao_Numero':
 			return self.Expressao_Numero(node.child[0])
 
-		if node.child[0].type == 'Chama_Funcao':
+		if node.child[0].type == 'Chama_Funcao' or node.child[0].type == 'Chama_Funcao_Vazia':
 			return self.Chama_Funcao(node.child[0])
 
 		if node.child[0].type == 'Expressao_Unaria':
@@ -257,16 +257,20 @@ class Semantica():
 			return self.simbolos['global@' + node.value][1]
 
 	def Expressao_Aritmetica(self, node):
-		teste1 = self.Conjunto_Expressao(node.child[0])
-		teste2 = self.Conjunto_Expressao(node.child[1])
+		esquerda = self.Conjunto_Expressao(node.child[0])
+		direita = self.Conjunto_Expressao(node.child[1])
 
-		if teste1 != teste2:
+		if (esquerda == 'inteiro') and (direita == 'inteiro'):
+			return 'inteiro'
+		elif (esquerda == 'flutuante') and (direita == 'flutuante'):
+			return 'flutuante'
+		elif (esquerda == 'flutuante') or (direita == 'flutuante'):
 			return 'flutuante'
 		else:
 			return 'inteiro'
 
 	def Expressao_Parenteses(self, node):
-		self.Conjunto_Expressao(node.child[0])
+		return self.Conjunto_Expressao(node.child[0])
 
 	def Expressao_Numero(self, node):
 		if type(node.value) == int:
